@@ -195,7 +195,7 @@ Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/)
 
 
 ---
-_This file was generated using the [Assemble][] Grunt.js plugin, on Mon Apr 22 2013 01:59:07 GMT-0400 (Eastern Daylight Time)._
+_This file was generated using the [Assemble][] Grunt.js plugin, on Mon Apr 22 2013 13:03:15 GMT-0400 (Eastern Daylight Time)._
 
 <!-- assemble links -->
 

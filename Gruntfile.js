@@ -49,9 +49,7 @@ module.exports = function(grunt) {
 
     // Prettify test HTML pages from Assemble task.
     prettify: {
-      options: {
-        prettifyrc: '.prettifyrc'
-      },
+      options: {prettifyrc: '.prettifyrc'},
       one: {
         src: 'test/actual/ugly/index.html',
         dest: 'test/actual/pretty/index.html'

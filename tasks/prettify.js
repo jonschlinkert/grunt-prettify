@@ -26,9 +26,9 @@ module.exports = function(grunt) {
       unformatted: []
     });
 
-    // Read js-prettify options from a specified prettifyrc file.
+    // Extend default options with options from specified prettifyrc file
     if (options.prettifyrc) {
-      options = grunt.file.readJSON(options.prettifyrc);
+      options = grunt.util._.extend(options, grunt.file.readJSON(options.prettifyrc));
     }
 
     // Iterate over all specified file groups.
