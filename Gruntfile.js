@@ -13,7 +13,15 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 
-    // Assemble HTML pages from templates.
+    // Before generating any new files, 
+    // remove any previously-created files.
+    clean: {
+      dest: {
+        pages: ['dist/*.html', 'index.html']
+      }
+    },
+
+    // Assemble test HTML pages.
     assemble: {
       options: {flatten: true},
       pages: {
@@ -39,7 +47,7 @@ module.exports = function(grunt) {
       }
     },
 
-    // Example task. Prettify pages from Assemble task.
+    // Prettify test HTML pages from Assemble task.
     prettify: {
       options: {
         prettifyrc: '.prettifyrc'
@@ -56,7 +64,8 @@ module.exports = function(grunt) {
         dest: 'test/actual/pretty/'
       }
     },
-    
+
+    // Lint.
     jshint: {
       all: [
         'Gruntfile.js',
@@ -67,17 +76,10 @@ module.exports = function(grunt) {
       }
     },
 
-    // Before generating any new files, 
-    // remove any previously-created files.
-    clean: {
-      dest: {
-        pages: ['dist/*.html', 'index.html']
-      }
-    },
 
   });
 
-  // Actually load this plugin's task(s).
+  // Actually load this plugin.
   grunt.loadTasks('tasks');
 
   // Load npm plugins to provide necessary tasks.
@@ -87,9 +89,9 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean previously created files,
   // then run this plugin's task(s), and then test the result.
-  grunt.registerTask('test', ['clean', 'assemble', 'prettify']);
+  grunt.registerTask('test', ['prettify']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
+  grunt.registerTask('default', ['jshint', 'clean', 'assemble', 'test']);
 
 };
