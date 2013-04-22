@@ -34,12 +34,13 @@
     "grunt": "~0.4.1"
   },
   "keywords": [
-    "assemble",
-    "grunt",
-    "beautify",
     "beautifier",
-    "prettify",
+    "beautify HTML",
+    "beautify",
+    "format HTML",
     "prettifier",
+    "prettify HTML",
+    "prettify",
     "gruntplugin",
     "grunt plugin"
   ]

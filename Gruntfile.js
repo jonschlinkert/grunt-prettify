@@ -13,41 +13,6 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 
-    // Prettify assembled pages.
-    prettify: {
-      options: {
-        prettifyrc: '.prettifyrc'
-      },
-      one: {
-        src: 'test/actual/ugly/index.html',
-        dest: 'test/actual/pretty/index.html'
-      },
-      all: {
-        expand: true, 
-        cwd: 'test/actual/ugly/', 
-        ext: '.html',
-        src: ['*.html'],
-        dest: 'test/actual/pretty/'
-      }
-    },
-
-    jshint: {
-      all: [
-        'Gruntfile.js',
-        'tasks/*.js'
-      ],
-      options: {
-        jshintrc: '.jshintrc'
-      }
-    },
-
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      dest: {
-        pages: ['dist/*.html', 'index.html']
-      }
-    },
-
     // Assemble HTML pages from templates.
     assemble: {
       options: {flatten: true},
@@ -72,7 +37,44 @@ module.exports = function(grunt) {
         src:  'docs/README.md.hbs',
         dest: './'
       }
-    }
+    },
+
+    // Example task. Prettify pages from Assemble task.
+    prettify: {
+      options: {
+        prettifyrc: '.prettifyrc'
+      },
+      one: {
+        src: 'test/actual/ugly/index.html',
+        dest: 'test/actual/pretty/index.html'
+      },
+      all: {
+        expand: true, 
+        cwd: 'test/actual/ugly/', 
+        ext: '.html',
+        src: ['*.html'],
+        dest: 'test/actual/pretty/'
+      }
+    },
+    
+    jshint: {
+      all: [
+        'Gruntfile.js',
+        'tasks/*.js'
+      ],
+      options: {
+        jshintrc: '.jshintrc'
+      }
+    },
+
+    // Before generating any new files, 
+    // remove any previously-created files.
+    clean: {
+      dest: {
+        pages: ['dist/*.html', 'index.html']
+      }
+    },
+
   });
 
   // Actually load this plugin's task(s).
