@@ -1,6 +1,6 @@
-# [grunt-prettify v0.1.1](https://github.com/jonschlinkert/grunt-prettify) [![Build Status](https://travis-ci.org/jonschlinkert/grunt-prettify.png)](https://travis-ci.org/jonschlinkert/grunt-prettify)
+# [grunt-prettify v0.1.2](https://github.com/jonschlinkert/grunt-prettify) [![Build Status](https://travis-ci.org/jonschlinkert/grunt-prettify.png)](https://travis-ci.org/jonschlinkert/grunt-prettify)
 
-> Prettify HTML.
+> How your HTML looks after a six-pack.
 
 ## Getting started
 _If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
@@ -84,7 +84,9 @@ Maximum characters allowed per line. Use `0` to disable.
 Type: `String|Array`
 Default value: `["pre", "code"]` 
 
-Array of tags that should not be re-formatted in the output. Defaults to inline.
+Array of tags that should not be re-formatted in the output. Defaults to inline. 
+
+_Attention:_ Make sure you play around with the settings and view the HTML in the browser. Pay special attention to whitespace around links and other inline elements, such as `<strong>` and `<span>`. If you specify a list of elements to remain `unformatted`, you will definitely need to make sure that whitepace is rendering the way you want it to. 
 
 
 ### Usage Examples
@@ -193,7 +195,7 @@ Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/)
 
 
 ---
-_This file was generated using the [Assemble][] Grunt.js plugin, on Sun Apr 21 2013 23:50:26 GMT-0400 (Eastern Daylight Time)._
+_This file was generated using the [Assemble][] Grunt.js plugin, on Mon Apr 22 2013 01:59:07 GMT-0400 (Eastern Daylight Time)._
 
 <!-- assemble links -->
 

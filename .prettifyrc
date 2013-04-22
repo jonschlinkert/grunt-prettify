@@ -4,5 +4,5 @@
   "indent_scripts": "normal",
   "brace_style": "expand",
   "max_char": 0,
-  "unformatted": ["pre", "code"]
+  "unformatted": ["pre", "code", "a", "strong"]
 }
