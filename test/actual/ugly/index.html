@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="../assets/bootstrap.css">
+  </head>
+  <body>
+    <!-- nav partial -->
+    <div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">ASSEMBLE</a>
+      <ul class="nav">
+        <li class="active">
+          <a href="index.html">Home</a>
+        </li>
+        <li>
+          <a href="partials.html">Partials</a>
+        </li>
+        <li>
+          <a href="markdown.html">Markdown</a>
+        </li>
+        <li>
+          <a href="basic.html">Basic</a>
+        </li>
+      </ul>
+      <ul class="nav pull-right">
+        <li>
+          <a href="https://github.com/assemble/assemble-examples">More Examples</a>
+        </li>        
+        <li>
+          <a href="https://github.com/assemble/assemble/">Visit Assemble</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <!-- pages -->
+      
+<div class="page-header">
+  <h1>Home</h1>
+</div>
+
+<p>In this example, at the top of each page you can use 
+  <a href="https://github.com/assemble/assemble/wiki/YAML-Front-Matter">YAML Front-Matter</a> for providing metadata and configuration data for the page
+</p>
+
+
+<h2>Code</h2>
+<h4>Inline code</h4>
+<p>To include code (formatted in monospace font), you can either surround inline code with a single backtick (<code>` </code>): <code>some code</code></p>
+<pre><code class="lang-md">`some code`</code></pre>
+<h4>Indented code</h4>
+<p>Or indent several lines of code by at least four spaces, as in:</p>
+<pre><code>// Some comments
+line 1 of code
+line 2 of code
+line 3 of code</code></pre>
+<h4>Code &quot;fences&quot;</h4>
+<p>Or wrap the code with backtick &quot;fences&quot; before and after the code: <code>``` </code></p>
+<pre><code class="lang-md">line 1 of code
+line 2 of code
+line 3 of code</code></pre>
+<h4>Code highlighting</h4>
+<p>GFM, or &quot;GitHub Flavored Markdown&quot; also supports syntax highlighting. To activate it, simply add the file extension of the language you want to use directly after the first &quot;fence&quot;: <code>``` js</code> </p>
+<pre><code class="lang-js">assemble: {
+  // Files to build into pages
+  pages: {
+    src:  &#39;templates/pages/*.hbs&#39;,
+    dest: &#39;dist/&#39;
+  }
+}</code></pre>
+
+
+
+
+
+
+
+      <script src="../assets/highlight.js"></script>
+    </div>
+  </body>
+</html>
