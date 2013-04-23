@@ -43,7 +43,7 @@ grunt.initConfig({
 ```
 
 
-## The "assemble" task
+## The "grunt-prettify" task
 ### Options
 
 #### options.indent_size
@@ -195,7 +195,7 @@ Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/)
 
 
 ---
-_This file was generated using the [Assemble][] Grunt.js plugin, on Mon Apr 22 2013 13:03:15 GMT-0400 (Eastern Daylight Time)._
+_This file was generated using the [Assemble][] Grunt.js plugin, on Mon Apr 22 2013 21:49:11 GMT-0400 (Eastern Daylight Time)._
 
 <!-- assemble links -->
 
