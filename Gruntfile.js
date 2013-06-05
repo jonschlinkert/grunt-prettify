@@ -21,32 +21,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Assemble test HTML pages.
-    assemble: {
-      options: {flatten: true},
-      pages: {
-        options: {
-          assets: 'test/actual/assets',
-          layout: 'test/fixtures/layouts/default.hbs',
-          partials: 'test/fixtures/partials/*.hbs',
-          data: 'test/fixtures/data/*.{json,yml}'
-        },
-        src: ['test/fixtures/pages/*.hbs'],
-        dest: 'test/actual/ugly/'       
-      },
-      // Build readme.
-      readme: {
-        options: {
-          pkg: grunt.file.readJSON('package.json'),
-          partials: ['docs/*.hbs'],
-          data: 'docs/readme.yml',
-          ext: ''
-        },
-        src:  'docs/README.md.hbs',
-        dest: './'
-      }
-    },
-
     // Prettify test HTML pages from Assemble task.
     prettify: {
       options: {prettifyrc: '.prettifyrc'},
@@ -74,6 +48,31 @@ module.exports = function(grunt) {
       }
     },
 
+    // Assemble test HTML pages.
+    assemble: {
+      options: {flatten: true},
+      pages: {
+        options: {
+          assets: 'test/actual/assets',
+          layout: 'test/fixtures/layouts/default.hbs',
+          partials: 'test/fixtures/partials/*.hbs',
+          data: 'test/fixtures/data/*.{json,yml}'
+        },
+        src: ['test/fixtures/pages/*.hbs'],
+        dest: 'test/actual/ugly/'       
+      },
+      // Build readme.
+      readme: {
+        options: {
+          pkg: grunt.file.readJSON('package.json'),
+          partials: ['docs/*.hbs'],
+          data: 'docs/readme.yml',
+          ext: ''
+        },
+        src:  'docs/README.md.hbs',
+        dest: './'
+      }
+    }
 
   });
 
