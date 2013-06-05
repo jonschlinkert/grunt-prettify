@@ -32,8 +32,8 @@ module.exports = function(grunt) {
     }
 
     // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      var max = f.src.filter(function(filepath) {
+    this.files.forEach(function(fp) {
+      var srcFile = fp.src.filter(function(filepath) {
         // Verify that files exist. Warn if a source file/pattern was invalid.
         if (!grunt.file.exists(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
@@ -44,16 +44,16 @@ module.exports = function(grunt) {
       }).map(grunt.file.read).join(grunt.util.normalizelf(grunt.util.linefeed)); // Read source files.
 
       // Handle options.
-      var prettify = prettifyHTML(max, options);
+      var prettify = prettifyHTML(srcFile, options);
       if (prettify.length < 1) {
         grunt.log.warn('Destination not written because beautified HTML was empty.');
       } else {
         
         // Write the destination file.
-        grunt.file.write(f.dest, prettify);
+        grunt.file.write(fp.dest, prettify);
 
         // Print a success message.
-        grunt.log.ok('File "' + f.dest + '" beautified.');
+        grunt.log.ok('File "' + fp.dest + '" beautified.');
       }
     });
   });
