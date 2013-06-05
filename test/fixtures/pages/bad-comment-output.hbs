@@ -1,6 +1,7 @@
 ---
 title: Home
 wiki: https://github.com/assemble/assemble/wiki/YAML-Front-Matter
+layout: test/fixtures/layouts/comments-example.hbs
 ---
 <div class="page-header">
   <h1>{{ title }}</h1>
@@ -12,3 +13,9 @@ wiki: https://github.com/assemble/assemble/wiki/YAML-Front-Matter
 
 {{! content from the path specified }}
 {{{md 'test/fixtures/content/code.md'}}}
+
+
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
