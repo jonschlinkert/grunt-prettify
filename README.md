@@ -1,4 +1,4 @@
-# [grunt-prettify v0.1.3](https://github.com/jonschlinkert/grunt-prettify) [![Build Status](https://travis-ci.org/jonschlinkert/grunt-prettify.png)](https://travis-ci.org/jonschlinkert/grunt-prettify)
+# [grunt-prettify v0.1.4](https://github.com/jonschlinkert/grunt-prettify) [![Build Status](https://travis-ci.org/jonschlinkert/grunt-prettify.png)](https://travis-ci.org/jonschlinkert/grunt-prettify)
 
 > How your HTML looks after a six-pack.
 
@@ -194,7 +194,7 @@ Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/)
 
 
 ---
-_This file was generated using the [Assemble][] Grunt.js plugin, on Tue Apr 23 2013 13:17:32 GMT-0400 (Eastern Daylight Time)._
+_This file was generated using the [Assemble][] Grunt.js plugin, on Wed Jun 05 2013 15:26:12 GMT-0400 (Eastern Daylight Time)._
 
 <!-- assemble links -->
 
