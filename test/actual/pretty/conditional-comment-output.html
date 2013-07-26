@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <!-- nav partial -->
+
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
@@ -44,15 +44,15 @@
   </div>
 
 
+
   <div class="container">
-    <!-- pages -->
 
     <div class="page-header">
       <h1>Home</h1>
     </div>
 
     <p>In this example, at the top of each page you can use
-      <a href="https://github.com/assemble/assemble/wiki/YAML-Front-Matter">YAML Front-Matter</a>for providing metadata and configuration data for the page
+      <a href="http://assemble.io/docs/YAML-front-matter.html">YAML Front-Matter</a>for providing metadata and configuration data for the page
     </p>
 
 
@@ -60,7 +60,7 @@
     <h4>Inline code</h4>
     <p>To include code (formatted in monospace font), you can either surround inline code with a single backtick (<code>` </code>): <code>some code</code>
     </p>
-    <pre><code class="lang-md">`some code`</code></pre>
+    <pre><code>some code</code></pre>
     <h4>Indented code</h4>
     <p>Or indent several lines of code by at least four spaces, as in:</p>
     <pre><code>// Some comments
@@ -70,11 +70,14 @@ line 3 of code</code></pre>
     <h4>Code &quot;fences&quot;</h4>
     <p>Or wrap the code with backtick &quot;fences&quot; before and after the code: <code>``` </code>
     </p>
-    <pre><code class="lang-md">line 1 of code
+    <pre><code>line 1 of code
 line 2 of code
 line 3 of code</code></pre>
+    <blockquote>
+      <p>kdfslkf</p>
+    </blockquote>
     <h4>Code highlighting</h4>
-    <p>GFM, or &quot;GitHub Flavored Markdown&quot; also supports syntax highlighting. To activate it, simply add the file extension of the language you want to use directly after the first &quot;fence&quot;: <code>``` js</code> 
+    <p>GFM, or &quot;GitHub Flavored Markdown&quot; also supports syntax highlighting. To activate it, simply add the file extension of the language you want to use directly after the first &quot;fence&quot;: <code>``` js</code>
     </p>
     <pre><code class="lang-js">assemble: {
   // Files to build into pages
@@ -91,9 +94,10 @@ line 3 of code</code></pre>
     <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
     <!--[if gt IE 8]><!-->
 
-
-    <script src="../assets/highlight.js"></script>
   </div>
+
+
+  <script src="../assets/highlight.js"></script>
 </body>
 
 </html>

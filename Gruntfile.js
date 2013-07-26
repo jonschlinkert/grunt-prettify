@@ -13,7 +13,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 
-    // Before generating any new files, 
+    // Before generating any new files,
     // remove any previously-created files.
     clean: {
       dest: {
@@ -29,8 +29,8 @@ module.exports = function(grunt) {
         dest: 'test/actual/pretty/index.html'
       },
       all: {
-        expand: true, 
-        cwd: 'test/actual/ugly/', 
+        expand: true,
+        cwd: 'test/actual/ugly/',
         ext: '.html',
         src: ['*.html'],
         dest: 'test/actual/pretty/'
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
           data: 'test/fixtures/data/*.{json,yml}'
         },
         src: ['test/fixtures/pages/*.hbs'],
-        dest: 'test/actual/ugly/'       
+        dest: 'test/actual/ugly/'
       },
       // Build readme.
       readme: {

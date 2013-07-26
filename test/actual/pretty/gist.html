@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Markdown</title>
+  <title>Multiple Posts</title>
   <link rel="stylesheet" href="../assets/bootstrap.css">
 </head>
 
@@ -21,7 +21,7 @@
           <li>
             <a href="partials.html">Partials</a>
           </li>
-          <li class="active">
+          <li>
             <a href="markdown.html">Markdown</a>
           </li>
           <li>
@@ -44,42 +44,21 @@
 
   <div class="container">
 
-    <div class="page-header">
-      <h1>Markdown</h1>
-    </div>
-
-
-
-
-    <p>You&#x27;re looking at inline markdown content, wrapped with handlebarstags!</p>
-    <p>Behold... some examples:</p>
-    <h1>Heading 1</h1>
-    <h2>Heading 2</h2>
-    <h3>Heading 3</h3>
-    <h4>Heading 4</h4>
-    <h5>Heading 5</h5>
-    <h6>Heading 6</h6>
-    <p>
-      <em>italic words</em>
-    </p>
-    <p>
-      <strong>bold words</strong>
-    </p>
-    <blockquote>
-      <p>this is a quote</p>
+    <blockquote cite="http://assemble.io">
+      <p>Example of using an associative array in YAML front matter to embed multiple gists on one page.</p>
     </blockquote>
-    <ol>
-      <li>First ordered list item</li>
-      <li>Second item</li>
-      <li>Third Item</li>
-    </ol>
-    <p>Finally, end a line with two or more spaces to do a manual line break.</p>
+
+    <p>Gists were embedded using the <code>{{gist}}</code> helper from the
+      <a href="https://github.com/assemble/handlebars-helpers">handlebars-helpers</a>library.</p>
 
 
+    <br>
 
-    <div class="page-header">
-      <h1>Markdown</h1>
-    </div>
+
+    <script src="https://gist.github.com/5898072.js"></script>
+
+    <script src="https://gist.github.com/5898077.js"></script>
+
 
   </div>
 

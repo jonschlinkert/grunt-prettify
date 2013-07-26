@@ -18,11 +18,11 @@ module.exports = function(grunt) {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      indent_size: 2,           
+      indent_size: 2,
       indent_char: " ",
-      indent_scripts: "normal", 
-      brace_style: "collapse", 
-      max_char: 0, 
+      indent_scripts: "normal",
+      brace_style: "collapse",
+      wrap_line_length: 0,
       unformatted: []
     });
 
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
       if (prettify.length < 1) {
         grunt.log.warn('Destination not written because beautified HTML was empty.');
       } else {
-        
+
         // Write the destination file.
         grunt.file.write(fp.dest, prettify);
 

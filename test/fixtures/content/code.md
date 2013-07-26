@@ -4,9 +4,13 @@
 
 To include code (formatted in monospace font), you can either surround inline code with a single backtick (`` ` ``): `some code`
 
-``` md
-`some code`
 ```
+some code
+```
+
+
+{{#handlebars}}
+{{/handlebars}}
 
 #### Indented code
 
@@ -22,15 +26,18 @@ Or indent several lines of code by at least four spaces, as in:
 
 Or wrap the code with backtick "fences" before and after the code: ` ``` `
 
-``` md
+```
 line 1 of code
 line 2 of code
 line 3 of code
 ```
 
+> kdfslkf
+
+
 #### Code highlighting
 
-GFM, or "GitHub Flavored Markdown" also supports syntax highlighting. To activate it, simply add the file extension of the language you want to use directly after the first "fence": ` ``` js ` 
+GFM, or "GitHub Flavored Markdown" also supports syntax highlighting. To activate it, simply add the file extension of the language you want to use directly after the first "fence": ` ``` js `
 
 ``` js
 assemble: {

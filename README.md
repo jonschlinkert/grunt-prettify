@@ -1,4 +1,4 @@
-# [grunt-prettify v0.1.4](https://github.com/jonschlinkert/grunt-prettify) [![Build Status](https://travis-ci.org/jonschlinkert/grunt-prettify.png)](https://travis-ci.org/jonschlinkert/grunt-prettify)
+# [grunt-prettify v0.2.0](https://github.com/jonschlinkert/grunt-prettify)[![Build Status](https://travis-ci.org/jonschlinkert/grunt-prettify.png)](https://travis-ci.org/jonschlinkert/grunt-prettify)
 
 > How your HTML looks after a six-pack.
 
@@ -29,7 +29,7 @@ If the plugin has been installed correctly, running `grunt --help` at the comman
 ### Overview
 In your project's Gruntfile, add a section named `prettify` to the data object passed into `grunt.initConfig()`.
 
-```js
+```javascript
 grunt.initConfig({
   prettify: {
     options: {
@@ -54,38 +54,52 @@ The indentation size to be used on the output HTML.
 #### options.indent_char
 Type: `String`
 Default value: `' '` (space)
+Options: `space`|`tab` (use an actual space or tab, not the word)
 
-Character with which to indent the output HTML. You may use `space` or `tab` (use an actual space or tab, not the word).
-
-#### options.indent_scripts
-Type: `String`
-Default value: `normal` 
-
-The indentation character to use to indent the output HTML. You may use the following options: `keep|separate|normal`.
+Character with which to indent the output HTML.
 
 #### options.brace_style
 Type: `String`
 Default value: `collapse`
 
-You may use the following options:
+Options:
 
-* `collapse`: the default, puts braces on the same line as control statements
+* `collapse`: (default) puts braces on the same line as control statements
 * `expand`: put all braces on their own lines (Allman / ANSI style)
-* `end-expand`: put _end_ braces on their own line.
+* `end-expand`: put _end_ braces only on their own line.
 
-#### options.max_char
+#### options.indent_scripts
+Type: `String`
+Default value: `normal`
+Options: `keep`|`separate`|`normal`
+
+The indentation character to use to indent the output HTML.
+
+#### options.wrap_line_length
 Type: `Number`
 Default value: `0` (disabled)
 
-Maximum characters allowed per line. Use `0` to disable. 
+Maximum characters per line. `0` disables, max is `250`.
+
+#### preserve_newlines
+Type: `Boolean`
+Default value: `true`
+
+Preserve existing line-breaks.
+
+#### max_preserve_newlines
+Type: `Number`
+Default value: `unlimited`
+
+Maximum number of consecutive line-breaks to be preserved.
 
 #### options.unformatted
 Type: `String|Array`
-Default value: `["pre", "code"]` 
+Default value: `["pre", "code"]`
 
-Array of tags that should not be re-formatted in the output. Defaults to inline. 
+Array of tags that should not be re-formatted in the output. Defaults to inline.
 
-_Attention:_ Make sure you play around with the settings and view the HTML in the browser. Pay special attention to whitespace around links and other inline elements, such as `<strong>` and `<span>`. If you specify a list of elements to remain `unformatted`, you will definitely need to make sure that whitepace is rendering the way you want it to. 
+_Attention:_ Make sure you play around with the settings and view the HTML in the browser. Pay special attention to whitespace around links and other inline elements, such as `<strong>` and `<span>`. If you specify a list of elements to remain `unformatted`, you will definitely need to make sure that whitepace is rendering the way you want it to.
 
 
 ### Usage Examples
@@ -107,6 +121,7 @@ grunt.initConfig({
 ```
 
 And the options are set to:
+
 ``` json
 {
   "indent_size": 2,
@@ -143,8 +158,8 @@ prettify: {
   },
   // Prettify a directory of files
   all: {
-    expand: true, 
-    cwd: 'test/actual/ugly/', 
+    expand: true,
+    cwd: 'test/actual/ugly/',
     ext: '.html',
     src: ['*.html'],
     dest: 'test/actual/pretty/'
@@ -161,7 +176,7 @@ prettify: {
 }
 ```
 
-See the [grunt][] docs for more information about task configuration. 
+See the [grunt][] docs for more information about task configuration.
 
 [grunt]: http://gruntjs.com/
 
@@ -176,8 +191,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 **Jon Schlinkert**
 
-+ [twitter.com/jonschlinkert](http://twitter.com/jonschlinkert)  
-+ [github.com/jonschlinkert](http://github.com/jonschlinkert)  
++ [twitter.com/jonschlinkert](http://twitter.com/jonschlinkert)
++ [github.com/jonschlinkert](http://github.com/jonschlinkert)
 
 
 Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/). The authors and contributors of that project have my sincerest appreciation for their work:
@@ -185,7 +200,7 @@ Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/)
  * Based on code initially developed by: [Einar Lielmanis](elfz@laacz.lv)
  * Many [other contributors](https://github.com/einars/js-beautify/contributors)
  * [Visit the project](https://github.com/einars/js-beautify)
-    
+
 
 ## Release History
 * 2013-04-21    v0.1.1    Create plugin, run tests.Add assemble task to generate test HTML from templates.
@@ -193,8 +208,8 @@ Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/)
 
 
 
----
-_This file was generated using the [Assemble][] Grunt.js plugin, on Wed Jun 05 2013 15:26:12 GMT-0400 (Eastern Daylight Time)._
+***
+_This file was generated using the [Assemble][] Grunt.js plugin, on Fri Jul 26 2013 01:13:48 GMT-0400 (Eastern Daylight Time)._
 
 <!-- assemble links -->
 

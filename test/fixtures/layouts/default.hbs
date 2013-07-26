@@ -6,14 +6,19 @@
     <link rel="stylesheet" href="{{assets}}/bootstrap.css">
   </head>
   <body>
-    <!-- nav partial -->
+
+    {{!-- "nav" partial
+    ======================================= --}}
     {{> nav }}
 
+    {{!-- content
+    ======================================= --}}
     <div class="container">
-      <!-- pages -->
       {{> body }}
-
-      <script src="{{assets}}/highlight.js"></script>
     </div>
+
+    {{!-- scripts
+    ======================================= --}}
+    <script src="{{assets}}/highlight.js"></script>
   </body>
 </html>
