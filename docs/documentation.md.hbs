@@ -74,18 +74,49 @@ grunt.initConfig({
 });
 ```
 
-And the options are set to:
+The default options are set to:
 
 ``` json
 {
   "indent_size": 2,
   "indent_char": " ",
   "indent_scripts": "normal",
-  "brace_style": "expand",
   "wrap_line_length": 0,
+  "brace_style": "collapse",
   "preserve_newlines": true,
-  "max_preserve_newlines": "5",
-  "unformatted": ["pre", "code"]
+  "max_preserve_newlines": 1,
+  "unformatted": [
+    "a",
+    "abbr",
+    "acronym",
+    "address",
+    "b",
+    "bdo",
+    "big",
+    "cite",
+    "code",
+    "del",
+    "dfn",
+    "dt",
+    "em",
+    "font",
+    "i",
+    "ins",
+    "kbd",
+    "pre",
+    "q",
+    "s",
+    "samp",
+    "small",
+    "span",
+    "strike",
+    "strong",
+    "sub",
+    "sup",
+    "tt",
+    "u",
+    "var"
+  ]
 }
 ```
 

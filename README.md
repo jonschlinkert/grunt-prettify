@@ -1,4 +1,4 @@
-# [grunt-prettify v0.2.0](https://github.com/jonschlinkert/grunt-prettify)[![Build Status](https://travis-ci.org/jonschlinkert/grunt-prettify.png)](https://travis-ci.org/jonschlinkert/grunt-prettify)
+# [grunt-prettify v0.2.2](https://github.com/jonschlinkert/grunt-prettify)[![Build Status](https://travis-ci.org/jonschlinkert/grunt-prettify.png)](https://travis-ci.org/jonschlinkert/grunt-prettify)
 
 > How your HTML looks after a six-pack.
 
@@ -120,18 +120,49 @@ grunt.initConfig({
 });
 ```
 
-And the options are set to:
+The default options are set to:
 
 ``` json
 {
   "indent_size": 2,
   "indent_char": " ",
   "indent_scripts": "normal",
-  "brace_style": "expand",
   "wrap_line_length": 0,
+  "brace_style": "collapse",
   "preserve_newlines": true,
-  "max_preserve_newlines": "5",
-  "unformatted": ["pre", "code"]
+  "max_preserve_newlines": 1,
+  "unformatted": [
+    "a",
+    "abbr",
+    "acronym",
+    "address",
+    "b",
+    "bdo",
+    "big",
+    "cite",
+    "code",
+    "del",
+    "dfn",
+    "dt",
+    "em",
+    "font",
+    "i",
+    "ins",
+    "kbd",
+    "pre",
+    "q",
+    "s",
+    "samp",
+    "small",
+    "span",
+    "strike",
+    "strong",
+    "sub",
+    "sup",
+    "tt",
+    "u",
+    "var"
+  ]
 }
 ```
 
@@ -212,7 +243,7 @@ Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/)
 
 
 ***
-_This file was generated using the [Assemble][] Grunt.js plugin, on Fri Jul 26 2013 03:39:39 GMT-0400 (Eastern Daylight Time)._
+_This file was generated using the [Assemble][] Grunt.js plugin, on Fri Jul 26 2013 04:48:57 GMT-0400 (Eastern Daylight Time)._
 
 <!-- assemble links -->
 

@@ -22,6 +22,8 @@ module.exports = function(grunt) {
       indent_char: " ",
       indent_scripts: "keep",
       brace_style: "expand",
+      preserve_newline: false,
+      max_preserve_newline: 0,
       wrap_line_length: 0,
       unformatted: []
     });

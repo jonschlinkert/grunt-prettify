@@ -1,7 +1,7 @@
 {
   "name": "grunt-prettify",
   "description": "How your HTML looks after a six-pack.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "homepage": "https://github.com/jonschlinkert/grunt-prettify",
   "author": {
     "name": "jonschlinkert",
