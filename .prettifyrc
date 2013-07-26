@@ -1,8 +1,13 @@
 {
   "indent_size": 2,
   "indent_char": " ",
-  "indent_scripts": "normal",
   "brace_style": "expand",
-  "max_char": 0,
-  "unformatted": ["pre", "code"]
+  "indent_scripts": "keep",
+  "preserve_newlines": true,
+  "max_preserve_newlines": 10,
+  "wrap_line_length": 0,
+  "unformatted": [
+    "pre",
+    "code"
+  ]
 }

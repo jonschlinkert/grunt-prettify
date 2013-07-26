@@ -20,8 +20,8 @@ module.exports = function(grunt) {
     var options = this.options({
       indent_size: 2,
       indent_char: " ",
-      indent_scripts: "normal",
-      brace_style: "collapse",
+      indent_scripts: "keep",
+      brace_style: "expand",
       wrap_line_length: 0,
       unformatted: []
     });

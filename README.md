@@ -45,20 +45,20 @@ grunt.initConfig({
 
 ## Options
 
-#### options.indent_size
+#### indent_size
 Type: `Number`
 Default value: `2`
 
 The indentation size to be used on the output HTML.
 
-#### options.indent_char
+#### indent_char
 Type: `String`
 Default value: `' '` (space)
 Options: `space`|`tab` (use an actual space or tab, not the word)
 
 Character with which to indent the output HTML.
 
-#### options.brace_style
+#### brace_style
 Type: `String`
 Default value: `collapse`
 
@@ -68,14 +68,14 @@ Options:
 * `expand`: put all braces on their own lines (Allman / ANSI style)
 * `end-expand`: put _end_ braces only on their own line.
 
-#### options.indent_scripts
+#### indent_scripts
 Type: `String`
 Default value: `normal`
 Options: `keep`|`separate`|`normal`
 
 The indentation character to use to indent the output HTML.
 
-#### options.wrap_line_length
+#### wrap_line_length
 Type: `Number`
 Default value: `0` (disabled)
 
@@ -93,7 +93,7 @@ Default value: `unlimited`
 
 Maximum number of consecutive line-breaks to be preserved.
 
-#### options.unformatted
+#### unformatted
 Type: `String|Array`
 Default value: `["pre", "code"]`
 
@@ -128,20 +128,22 @@ And the options are set to:
   "indent_char": " ",
   "indent_scripts": "normal",
   "brace_style": "expand",
-  "max_char": 0,
+  "wrap_line_length": 0,
+  "preserve_newlines": true,
+  "max_preserve_newlines": "5",
   "unformatted": ["pre", "code"]
 }
 ```
 
 #### Custom Options
-You can "internalize" the options in the task if you wish, like this:
+You can also specify the options in the Gruntfile if you wish, like this:
 
 ```js
 prettify: {
   options: {
     indent_size: 2,
     indent_char: ' ',
-    max_char: 78,
+    wrap_line_length: 78,
     brace_style: 'expand',
     unformatted: ['a', 'sub', 'sup', 'b', 'i', 'u']
   },
@@ -181,6 +183,7 @@ See the [grunt][] docs for more information about task configuration.
 [grunt]: http://gruntjs.com/
 
 
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Use [Assemble][assemble] to build and maintain your gh-pages, blog or documentation. Lint and test your code using [Grunt](http://gruntjs.com/).
 
@@ -209,7 +212,7 @@ Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/)
 
 
 ***
-_This file was generated using the [Assemble][] Grunt.js plugin, on Fri Jul 26 2013 01:13:48 GMT-0400 (Eastern Daylight Time)._
+_This file was generated using the [Assemble][] Grunt.js plugin, on Fri Jul 26 2013 03:39:39 GMT-0400 (Eastern Daylight Time)._
 
 <!-- assemble links -->
 
