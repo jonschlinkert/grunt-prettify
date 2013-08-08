@@ -13,67 +13,50 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 
-    // Before generating any new files,
-    // remove any previously-created files.
-    clean: {
-      dest: {
-        pages: ['dist/*.html', 'index.html']
+    // Lint.
+    jshint: {
+      options: {jshintrc: '.jshintrc'},
+      all: [
+        'Gruntfile.js',
+        'tasks/*.js'
+      ]
+    },
+
+    // Assemble test HTML pages.
+    assemble: {
+      options: {
+        flatten: true,
+        assets: 'test/actual/assets',
+        layout: 'test/fixtures/layouts/default.hbs',
+        partials: 'test/fixtures/includes/*.hbs',
+        data: 'test/fixtures/data/*.{json,yml}'
+      },
+      pages: {
+        src: ['test/fixtures/pages/*.hbs'],
+        dest: 'test/actual/ugly/'
       }
     },
 
-    // Prettify test HTML pages from Assemble task.
     prettify: {
-      options: {prettifyrc: '.prettifyrc'},
+      options: {prettifyrc: '.jsbeautifyrc'},
       one: {
         src: 'test/actual/ugly/index.html',
         dest: 'test/actual/pretty/index.html'
       },
       all: {
-        expand: true,
-        cwd: 'test/actual/ugly/',
-        ext: '.html',
-        src: ['*.html'],
-        dest: 'test/actual/pretty/'
+        files: [
+          {expand: true, cwd: 'test/actual/ugly/', ext: '.html', src: ['*.html'], dest: 'test/actual/pretty/'}
+        ]
       }
     },
 
-    // Lint.
-    jshint: {
-      all: [
-        'Gruntfile.js',
-        'tasks/*.js'
-      ],
-      options: {
-        jshintrc: '.jshintrc'
-      }
-    },
-
-    // Assemble test HTML pages.
-    assemble: {
-      options: {flatten: true},
-      pages: {
-        options: {
-          assets: 'test/actual/assets',
-          layout: 'test/fixtures/layouts/default.hbs',
-          partials: 'test/fixtures/partials/*.hbs',
-          data: 'test/fixtures/data/*.{json,yml}'
-        },
-        src: ['test/fixtures/pages/*.hbs'],
-        dest: 'test/actual/ugly/'
-      },
-      // Build readme.
-      readme: {
-        options: {
-          pkg: grunt.file.readJSON('package.json'),
-          partials: ['docs/*.hbs'],
-          data: 'docs/readme.yml',
-          ext: ''
-        },
-        src:  'docs/README.md.hbs',
-        dest: './'
+    // Before generating any new files,
+    // remove files from previous build.
+    clean: {
+      dest: {
+        pages: ['dist/*.html', 'index.html']
       }
     }
-
   });
 
   // Actually load this plugin.
@@ -81,14 +64,17 @@ module.exports = function(grunt) {
 
   // Load npm plugins to provide necessary tasks.
   grunt.loadNpmTasks('assemble');
+  grunt.loadNpmTasks('assemble-internal');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
-  // Whenever the "test" task is run, first clean previously created files,
-  // then run this plugin's task(s), and then test the result.
-  grunt.registerTask('test', ['prettify']);
+  // Tests to be run.
+  grunt.registerTask('test', ['jshint']);
+
+  // Generate the README.
+  grunt.registerTask('docs', ['assemble-internal']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'clean', 'assemble', 'test']);
+  grunt.registerTask('default', ['test', 'clean', 'assemble', 'prettify']);
 
 };

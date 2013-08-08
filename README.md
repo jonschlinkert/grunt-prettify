@@ -1,30 +1,27 @@
-# [grunt-prettify v0.2.2](https://github.com/jonschlinkert/grunt-prettify)[![Build Status](https://travis-ci.org/jonschlinkert/grunt-prettify.png)](https://travis-ci.org/jonschlinkert/grunt-prettify)
+# grunt-prettify [![NPM version](https://badge.fury.io/js/grunt-prettify.png)](http://badge.fury.io/js/grunt-prettify)  [![Build Status](https://travis-ci.org/jonschlinkert/grunt-prettify.png?branch=master)](https://travis-ci.org/jonschlinkert/grunt-prettify)
 
-> How your HTML looks after a six-pack.
+> HTML prettifier with a number of options for formatting HTML the way you like it.
 
-## Getting started
-_If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
+## Getting Started
+This plugin requires Grunt `~0.4.1`
 
-From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
-```bash
+```shell
 npm install grunt-prettify --save-dev
 ```
 
-Once that's done, add this line to your project's Gruntfile:
+Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
 grunt.loadNpmTasks('grunt-prettify');
 ```
 
-If the plugin has been installed correctly, running `grunt --help` at the command line should list the newly-installed plugin's task or tasks. In addition, the plugin should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
-
-[grunt]: http://gruntjs.com/
-[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
-[package.json]: https://npmjs.org/doc/json.html
 
 
-## The "prettify" task
+
+## Prettify task
+_Run this task with the `grunt prettify` command._
 
 ### Overview
 In your project's Gruntfile, add a section named `prettify` to the data object passed into `grunt.initConfig()`.
@@ -42,8 +39,7 @@ grunt.initConfig({
 });
 ```
 
-
-## Options
+### Options
 
 #### indent_size
 Type: `Number`
@@ -58,6 +54,19 @@ Options: `space`|`tab` (use an actual space or tab, not the word)
 
 Character with which to indent the output HTML.
 
+#### indent_scripts
+Type: `String`
+Default value: `normal`
+Options: `keep`|`separate`|`normal`
+
+The indentation character to use to indent the output HTML.
+
+#### indent_inner_html
+Type: `Boolean`
+Default value: `true`
+
+Indent `<body></body>` and `<head></head>` sections.
+
 #### brace_style
 Type: `String`
 Default value: `collapse`
@@ -67,13 +76,6 @@ Options:
 * `collapse`: (default) puts braces on the same line as control statements
 * `expand`: put all braces on their own lines (Allman / ANSI style)
 * `end-expand`: put _end_ braces only on their own line.
-
-#### indent_scripts
-Type: `String`
-Default value: `normal`
-Options: `keep`|`separate`|`normal`
-
-The indentation character to use to indent the output HTML.
 
 #### wrap_line_length
 Type: `Number`
@@ -100,6 +102,7 @@ Default value: `["pre", "code"]`
 Array of tags that should not be re-formatted in the output. Defaults to inline.
 
 _Attention:_ Make sure you play around with the settings and view the HTML in the browser. Pay special attention to whitespace around links and other inline elements, such as `<strong>` and `<span>`. If you specify a list of elements to remain `unformatted`, you will definitely need to make sure that whitepace is rendering the way you want it to.
+
 
 
 ### Usage Examples
@@ -167,6 +170,7 @@ The default options are set to:
 ```
 
 #### Custom Options
+
 You can also specify the options in the Gruntfile if you wish, like this:
 
 ```js
@@ -211,57 +215,36 @@ prettify: {
 
 See the [grunt][] docs for more information about task configuration.
 
+
 [grunt]: http://gruntjs.com/
 
 
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Use [Assemble][assemble] to build and maintain your gh-pages, blog or documentation. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-
-
-
-## Author
+#### Author
 
 **Jon Schlinkert**
 
 + [twitter.com/jonschlinkert](http://twitter.com/jonschlinkert)
 + [github.com/jonschlinkert](http://github.com/jonschlinkert)
 
+#### Thanks!
 
-Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/). The authors and contributors of that project have my sincerest appreciation for their work:
+Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/).
+"Thank you" to authors and contributors of that project!
+
  * Written by Nochum Sossonko, <nsossonko@hotmail.com>
  * Based on code initially developed by: [Einar Lielmanis](elfz@laacz.lv)
  * Many [other contributors](https://github.com/einars/js-beautify/contributors)
  * [Visit the project](https://github.com/einars/js-beautify)
 
 
+
 ## Release History
-* 2013-04-21    v0.1.1    Create plugin, run tests.Add assemble task to generate test HTML from templates.
-* 2013-04-21    v0.1.0    First commit.
 
-
+ * 2013-04-21   v0.1.1   Create plugin, run tests. Add assemble task to generate test HTML from templates.
+ * 2013-04-21   v0.1.0   First commit.
 
 ***
-_This file was generated using the [Assemble][] Grunt.js plugin, on Fri Jul 26 2013 04:48:57 GMT-0400 (Eastern Daylight Time)._
 
-<!-- assemble links -->
+Project authored by [Jon Schlinkert](https://github.com/jonschlinkert/).
 
-[download]: https://github.com/assemble/assemble-examples-basic/archive/master.zip
-[assemble]: https://github.com/assemble/assemble/
-[assemble-examples]: https://github.com/assemble/assemble-examples
-
-[wiki]: https://github.com/assemble/assemble/wiki
-[data]: https://github.com/assemble/assemble/wiki/data
-[layouts]: https://github.com/assemble/assemble/wiki/layouts
-[markdown]: https://github.com/assemble/assemble/wiki/markdown
-[options]: https://github.com/assemble/assemble/wiki/options
-[partials]: https://github.com/assemble/assemble/wiki/partials
-
-
-<!-- grunt links -->
-
-[gruntfile]: http://gruntjs.com/sample-gruntfile
-[configuring tasks]: http://gruntjs.com/configuring-tasks
-[files-object]: http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically
-[tasks-and-targets]: http://gruntjs.com/configuring-tasks#task-configuration-and-targets
+_This file was generated on Wed Aug 07 2013 23:18:59._

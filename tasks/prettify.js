@@ -20,6 +20,7 @@ module.exports = function(grunt) {
     var options = this.options({
       indent_size: 2,
       indent_char: " ",
+      indent_inner_html: true,
       indent_scripts: "keep",
       brace_style: "expand",
       preserve_newline: false,
