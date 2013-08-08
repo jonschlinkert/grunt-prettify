@@ -1,64 +1,6 @@
+# Usage Examples
 
-#### indent_size
-Type: `Number`
-Default value: `2`
-
-The indentation size to be used on the output HTML.
-
-#### indent_char
-Type: `String`
-Default value: `' '` (space)
-Options: `space`|`tab` (use an actual space or tab, not the word)
-
-Character with which to indent the output HTML.
-
-#### brace_style
-Type: `String`
-Default value: `collapse`
-
-Options:
-
-* `collapse`: (default) puts braces on the same line as control statements
-* `expand`: put all braces on their own lines (Allman / ANSI style)
-* `end-expand`: put _end_ braces only on their own line.
-
-#### indent_scripts
-Type: `String`
-Default value: `normal`
-Options: `keep`|`separate`|`normal`
-
-The indentation character to use to indent the output HTML.
-
-#### wrap_line_length
-Type: `Number`
-Default value: `0` (disabled)
-
-Maximum characters per line. `0` disables, max is `250`.
-
-#### preserve_newlines
-Type: `Boolean`
-Default value: `true`
-
-Preserve existing line-breaks.
-
-#### max_preserve_newlines
-Type: `Number`
-Default value: `unlimited`
-
-Maximum number of consecutive line-breaks to be preserved.
-
-#### unformatted
-Type: `String|Array`
-Default value: `["pre", "code"]`
-
-Array of tags that should not be re-formatted in the output. Defaults to inline.
-
-_Attention:_ Make sure you play around with the settings and view the HTML in the browser. Pay special attention to whitespace around links and other inline elements, such as `<strong>` and `<span>`. If you specify a list of elements to remain `unformatted`, you will definitely need to make sure that whitepace is rendering the way you want it to.
-
-
-### Usage Examples
-
-#### Default Options
+## Default Options
 The default setup in this project's Gruntfile uses an external `.prettifyrc` file for controlling the task's options.
 
 ```js
@@ -120,7 +62,8 @@ The default options are set to:
 }
 ```
 
-#### Custom Options
+## Custom Options
+
 You can also specify the options in the Gruntfile if you wish, like this:
 
 ```js
@@ -165,5 +108,24 @@ prettify: {
 
 See the [grunt][] docs for more information about task configuration.
 
+
 [grunt]: http://gruntjs.com/
+
+
+## Author
+
+**Jon Schlinkert**
+
++ [twitter.com/jonschlinkert](http://twitter.com/jonschlinkert)
++ [github.com/jonschlinkert](http://github.com/jonschlinkert)
+
+## Thanks!
+
+Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/).
+"Thank you" to authors and contributors of that project!
+
+ * Written by Nochum Sossonko, <nsossonko@hotmail.com>
+ * Based on code initially developed by: [Einar Lielmanis](elfz@laacz.lv)
+ * Many [other contributors](https://github.com/einars/js-beautify/contributors)
+ * [Visit the project](https://github.com/einars/js-beautify)
 
