@@ -253,4 +253,4 @@ Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/)
 
 Project authored by [Jon Schlinkert](https://github.com/jonschlinkert/).
 
-_This file was generated on Wed Aug 14 2013 04:32:12._
+_This file was generated on Wed Aug 14 2013 04:32:38._
