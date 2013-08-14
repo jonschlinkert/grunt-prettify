@@ -41,6 +41,12 @@ grunt.initConfig({
 
 ### Options
 
+#### condense
+Type: `Boolean`
+Default value: `true`
+
+Removes extra newlines and retains indenting.
+
 #### indent_size
 Type: `Number`
 Default value: `2`
@@ -247,4 +253,4 @@ Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/)
 
 Project authored by [Jon Schlinkert](https://github.com/jonschlinkert/).
 
-_This file was generated on Wed Aug 07 2013 23:18:59._
+_This file was generated on Wed Aug 14 2013 04:32:12._

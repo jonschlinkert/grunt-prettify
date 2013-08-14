@@ -48,6 +48,9 @@ module.exports = function(grunt) {
 
       // Handle options.
       var prettify = prettifyHTML(srcFile, options);
+      if(options.condense === true) {
+        prettify = prettify.replace(/(\n|\r){2,}/g, '\n');
+      }
       if (prettify.length < 1) {
         grunt.log.warn('Destination not written because beautified HTML was empty.');
       } else {

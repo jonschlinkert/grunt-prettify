@@ -1,5 +1,6 @@
 {
   "indent_size": 2,
+  "condense": true,
   "indent_inner_html": true,
   "indent_char": " ",
   "indent_scripts": "keep",
