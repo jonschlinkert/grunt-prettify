@@ -1,7 +1,7 @@
 {
   "name": "grunt-prettify",
   "description": "HTML prettifier with a number of options for formatting HTML the way you like it.",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "homepage": "https://github.com/jonschlinkert/grunt-prettify",
   "author": {
     "name": "jonschlinkert",
@@ -28,7 +28,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "js-beautify": "~1.4.0"
+    "js-beautify": "https://github.com/jonschlinkert/js-beautify/tarball/master"
   },
   "devDependencies": {
     "assemble": "~0.4.2",
