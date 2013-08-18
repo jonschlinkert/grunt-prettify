@@ -246,6 +246,7 @@ Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/)
 
 ## Release History
 
+ * 2013-08-18   v0.2.7   Options updated to use new config option from js-beautify.
  * 2013-04-21   v0.1.1   Create plugin, run tests. Add assemble task to generate test HTML from templates.
  * 2013-04-21   v0.1.0   First commit.
 
@@ -253,4 +254,4 @@ Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/)
 
 Project authored by [Jon Schlinkert](https://github.com/jonschlinkert/).
 
-_This file was generated on Wed Aug 14 2013 04:32:38._
+_This file was generated on Sun Aug 18 2013 14:12:23._
