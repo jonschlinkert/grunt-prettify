@@ -29,9 +29,9 @@ module.exports = function(grunt) {
       unformatted: []
     });
 
-    // Extend default options with options from specified prettifyrc file
-    if (options.prettifyrc) {
-      options = grunt.util._.extend(options, grunt.file.readJSON(options.prettifyrc));
+    // Extend default options with options from specified jsbeautifyrc file
+    if (options.config) {
+      options = grunt.util._.extend(options, grunt.file.readJSON(options.config));
     }
 
     // Iterate over all specified file groups.

@@ -38,7 +38,7 @@ module.exports = function(grunt) {
     },
 
     prettify: {
-      options: {prettifyrc: '.jsbeautifyrc'},
+      options: {config: '.jsbeautifyrc'},
       one: {
         src: 'test/actual/ugly/index.html',
         dest: 'test/actual/pretty/index.html'
