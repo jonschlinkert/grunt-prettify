@@ -20,7 +20,7 @@ The default options are set to:
 
 ``` json
 {
-  "indent_size": 2,
+  "indent": 2,
   "indent_char": " ",
   "indent_scripts": "normal",
   "wrap_line_length": 0,
@@ -29,35 +29,8 @@ The default options are set to:
   "max_preserve_newlines": 1,
   "unformatted": [
     "a",
-    "abbr",
-    "acronym",
-    "address",
-    "b",
-    "bdo",
-    "big",
-    "cite",
     "code",
-    "del",
-    "dfn",
-    "dt",
-    "em",
-    "font",
-    "i",
-    "ins",
-    "kbd",
-    "pre",
-    "q",
-    "s",
-    "samp",
-    "small",
-    "span",
-    "strike",
-    "strong",
-    "sub",
-    "sup",
-    "tt",
-    "u",
-    "var"
+    "pre"
   ]
 }
 ```
@@ -69,7 +42,7 @@ You can also specify the options in the Gruntfile if you wish, like this:
 ```js
 prettify: {
   options: {
-    indent_size: 2,
+    indent: 2,
     indent_char: ' ',
     wrap_line_length: 78,
     brace_style: 'expand',

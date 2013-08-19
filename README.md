@@ -32,7 +32,7 @@ grunt.initConfig({
     options: {
       // Task-specific options go here.
     },
-    your_target: {
+    html: {
       // Target-specific file lists and/or options go here.
     }
   }
@@ -41,17 +41,37 @@ grunt.initConfig({
 
 ### Options
 
+###### config
+Type: `String`
+Default value: `null`
+
+Path to `.jsbeautifyrc`. If this option is specified, options defined therein will be used. The `.jsbeautifyrc` file must be valid JSON and looks something like this:
+
+```json
+{
+  "indent": 4,
+  "condense": true,
+  "indent_inner_html": true,
+  "unformatted": [
+    "a",
+    "pre"
+  ]
+}
+```
+
+Note that options defined in `.jsbeautifyrc` override the default options, and options defined in the Gruntfile override all other options.
+
 #### condense
 Type: `Boolean`
 Default value: `true`
 
 Removes extra newlines and retains indenting.
 
-#### indent_size
+#### indent
 Type: `Number`
 Default value: `2`
 
-The indentation size to be used on the output HTML.
+The indentation size to be used on the output HTML. This is an alias for `indent_size`. So either `indent` or `indent_size` may be used.
 
 #### indent_char
 Type: `String`
@@ -133,7 +153,7 @@ The default options are set to:
 
 ``` json
 {
-  "indent_size": 2,
+  "indent": 2,
   "indent_char": " ",
   "indent_scripts": "normal",
   "wrap_line_length": 0,
@@ -142,35 +162,8 @@ The default options are set to:
   "max_preserve_newlines": 1,
   "unformatted": [
     "a",
-    "abbr",
-    "acronym",
-    "address",
-    "b",
-    "bdo",
-    "big",
-    "cite",
     "code",
-    "del",
-    "dfn",
-    "dt",
-    "em",
-    "font",
-    "i",
-    "ins",
-    "kbd",
-    "pre",
-    "q",
-    "s",
-    "samp",
-    "small",
-    "span",
-    "strike",
-    "strong",
-    "sub",
-    "sup",
-    "tt",
-    "u",
-    "var"
+    "pre"
   ]
 }
 ```
@@ -182,7 +175,7 @@ You can also specify the options in the Gruntfile if you wish, like this:
 ```js
 prettify: {
   options: {
-    indent_size: 2,
+    indent: 2,
     indent_char: ' ',
     wrap_line_length: 78,
     brace_style: 'expand',
@@ -254,4 +247,4 @@ Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/)
 
 Project authored by [Jon Schlinkert](https://github.com/jonschlinkert/).
 
-_This file was generated on Sun Aug 18 2013 14:12:23._
+_This file was generated on Mon Aug 19 2013 17:39:16._

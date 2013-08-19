@@ -18,20 +18,20 @@ module.exports = function(grunt) {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      indent_size: 2,
+      indent: 2,
       indent_char: " ",
       indent_inner_html: true,
       indent_scripts: "keep",
       brace_style: "expand",
       preserve_newline: false,
       max_preserve_newline: 0,
-      wrap_line_length: 0,
-      unformatted: []
+      wrap_line_length: 0
     });
+    options.indent_size = options.indent;
 
     // Extend default options with options from specified jsbeautifyrc file
     if (options.config) {
-      options = grunt.util._.extend(options, grunt.file.readJSON(options.config));
+      options = grunt.util._.extend(grunt.file.readJSON(options.config), options);
     }
 
     // Iterate over all specified file groups.

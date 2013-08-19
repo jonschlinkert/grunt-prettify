@@ -1,16 +1,36 @@
 # Options
 
+#### config
+Type: `String`
+Default value: `null`
+
+Path to `.jsbeautifyrc`. If this option is specified, options defined therein will be used. The `.jsbeautifyrc` file must be valid JSON and looks something like this:
+
+```json
+{
+  "indent": 4,
+  "condense": true,
+  "indent_inner_html": true,
+  "unformatted": [
+    "a",
+    "pre"
+  ]
+}
+```
+
+Note that options defined in `.jsbeautifyrc` override the default options, and options defined in the Gruntfile override all other options.
+
 ## condense
 Type: `Boolean`
 Default value: `true`
 
 Removes extra newlines and retains indenting.
 
-## indent_size
+## indent
 Type: `Number`
 Default value: `2`
 
-The indentation size to be used on the output HTML.
+The indentation size to be used on the output HTML. This is an alias for `indent_size`. So either `indent` or `indent_size` may be used.
 
 ## indent_char
 Type: `String`
