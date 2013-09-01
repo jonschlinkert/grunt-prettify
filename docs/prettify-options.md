@@ -41,7 +41,7 @@ Character with which to indent the output HTML.
 
 ## indent_scripts
 Type: `String`
-Default value: `normal`
+Default value: `keep`
 Options: `keep`|`separate`|`normal`
 
 The indentation character to use to indent the output HTML.
@@ -54,7 +54,7 @@ Indent `<body></body>` and `<head></head>` sections.
 
 ## brace_style
 Type: `String`
-Default value: `collapse`
+Default value: `expand`
 
 Options:
 
@@ -70,7 +70,7 @@ Maximum characters per line. `0` disables, max is `250`.
 
 ## preserve_newlines
 Type: `Boolean`
-Default value: `true`
+Default value: `false`
 
 Preserve existing line-breaks.
 
