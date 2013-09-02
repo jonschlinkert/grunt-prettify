@@ -22,7 +22,7 @@ module.exports = function(grunt) {
       ]
     },
 
-    // Assemble test HTML pages.
+    // Build HTML for tests.
     assemble: {
       options: {
         flatten: true,
@@ -40,6 +40,7 @@ module.exports = function(grunt) {
     prettify: {
       options: {
         config: '.jsbeautifyrc',
+        padcomments: true,
         condense: true,
         indent: 2
       },

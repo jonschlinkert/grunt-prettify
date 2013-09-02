@@ -1,7 +1,7 @@
 {
   "name": "grunt-prettify",
   "description": "HTML prettifier with a number of options for formatting HTML the way you like it.",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "homepage": "https://github.com/jonschlinkert/grunt-prettify",
   "author": {
     "name": "jonschlinkert",

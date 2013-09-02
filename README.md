@@ -67,6 +67,12 @@ Default value: `true`
 
 Removes extra newlines and retains indenting.
 
+#### padcomments
+Type: `Boolean`
+Default value: `false`
+
+Add a single newline above each code comment.
+
 #### indent
 Type: `Number`
 Default value: `2`
@@ -82,7 +88,7 @@ Character with which to indent the output HTML.
 
 #### indent_scripts
 Type: `String`
-Default value: `normal`
+Default value: `keep`
 Options: `keep`|`separate`|`normal`
 
 The indentation character to use to indent the output HTML.
@@ -95,7 +101,7 @@ Indent `<body></body>` and `<head></head>` sections.
 
 #### brace_style
 Type: `String`
-Default value: `collapse`
+Default value: `expand`
 
 Options:
 
@@ -111,7 +117,7 @@ Maximum characters per line. `0` disables, max is `250`.
 
 #### preserve_newlines
 Type: `Boolean`
-Default value: `true`
+Default value: `false`
 
 Preserve existing line-breaks.
 
@@ -247,4 +253,4 @@ Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/)
 
 Project authored by [Jon Schlinkert](https://github.com/jonschlinkert/).
 
-_This file was generated on Mon Aug 19 2013 17:39:16._
+_This file was generated on Sun Sep 01 2013 23:25:44._

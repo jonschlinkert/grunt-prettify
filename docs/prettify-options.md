@@ -26,6 +26,12 @@ Default value: `true`
 
 Removes extra newlines and retains indenting.
 
+## padcomments
+Type: `Boolean`
+Default value: `false`
+
+Add a single newline above each code comment.
+
 ## indent
 Type: `Number`
 Default value: `2`

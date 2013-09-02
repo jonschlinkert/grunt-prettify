@@ -18,6 +18,8 @@ module.exports = function(grunt) {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
+      condense: true,
+      padcomments: false,
       indent: 2,
       indent_char: " ",
       indent_inner_html: true,
@@ -27,6 +29,8 @@ module.exports = function(grunt) {
       max_preserve_newline: 0,
       wrap_line_length: 0
     });
+
+    // Alias indent_size
     options.indent_size = options.indent;
 
     // Extend default options with options from specified jsbeautifyrc file
@@ -46,11 +50,18 @@ module.exports = function(grunt) {
         }
       }).map(grunt.file.read).join(grunt.util.normalizelf(grunt.util.linefeed)); // Read source files.
 
-      // Handle options.
+      // Prettify HTML.
       var prettify = prettifyHTML(srcFile, options);
+
+      // Reduce multiple newlines to a single newline
       if(options.condense === true) {
-        prettify = prettify.replace(/(\n|\r){2,}/g, '\n');
+        prettify = condense(prettify);
       }
+      // Add a single newline above code comments.
+      if(options.padcomments === true) {
+        prettify = padcomments(prettify);
+      }
+
       if (prettify.length < 1) {
         grunt.log.warn('Destination not written because beautified HTML was empty.');
       } else {
@@ -63,6 +74,14 @@ module.exports = function(grunt) {
       }
     });
   });
+
+  var condense = function(str) {
+    return str.replace(/(\n|\r){2,}/g, '\n');
+  };
+
+  var padcomments = function(str) {
+    return str.replace(/(\s*<!--\s)/g, '\n$1');
+  };
 
   var prettifyHTML = function(source, options) {
     try {
