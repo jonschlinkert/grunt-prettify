@@ -102,7 +102,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-readme');
 
+  grunt.registerTask('test', ['jshint', 'prettify']);
+
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'clean', 'assemble', 'prettify', 'readme']);
-
 };
