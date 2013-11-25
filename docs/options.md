@@ -24,6 +24,12 @@ Default value: `true`
 
 Removes extra newlines and retains indenting.
 
+### preserveBOM
+Type: `Boolean`
+Default value: `false`
+
+Preserve byte-order marks that might exist. Also see the [Grunt.js source](https://github.com/gruntjs/grunt/blob/master/lib/grunt/file.js#L217).
+
 ### padcomments
 Type: `Boolean|Number`
 Default value: `false`
