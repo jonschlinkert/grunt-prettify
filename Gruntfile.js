@@ -45,8 +45,11 @@ module.exports = function(grunt) {
         indent: 2
       },
       one: {
+        options: {
+          indent: 6
+        },
         src: 'test/actual/ugly/index.html',
-        dest: 'test/actual/pretty/index.html'
+        dest: 'test/actual/index.html'
       },
       all: {
         files: [

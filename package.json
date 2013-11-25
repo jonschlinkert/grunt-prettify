@@ -28,7 +28,8 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "js-beautify": "~1.4.2"
+    "js-beautify": "~1.4.2",
+    "iconv-lite": "~0.2.11"
   },
   "devDependencies": {
     "grunt-contrib-clean": "~0.5.0",

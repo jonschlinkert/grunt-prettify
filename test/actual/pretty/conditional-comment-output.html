@@ -46,18 +46,18 @@
       <p>In this example, at the top of each page you can use
         <a href="http://assemble.io/docs/YAML-front-matter.html">YAML Front-Matter</a> for providing metadata and configuration data for the page
       </p>
-      <h2>Code</h2>
-      <h4>Inline code</h4>
+      <h2 id="code">Code</h2>
+      <h4 id="inline-code">Inline code</h4>
       <p>To include code (formatted in monospace font), you can either surround inline code with a single backtick (<code>` </code>): <code>some code</code>
       </p>
       <pre><code>some code</code></pre>
-      <h4>Indented code</h4>
+      <h4 id="indented-code">Indented code</h4>
       <p>Or indent several lines of code by at least four spaces, as in:</p>
       <pre><code>// Some comments
 line 1 of code
 line 2 of code
 line 3 of code</code></pre>
-      <h4>Code &quot;fences&quot;</h4>
+      <h4 id="code-fences-">Code &quot;fences&quot;</h4>
       <p>Or wrap the code with backtick &quot;fences&quot; before and after the code: <code>``` </code>
       </p>
       <pre><code>line 1 of code
@@ -66,10 +66,10 @@ line 3 of code</code></pre>
       <blockquote>
         <p>kdfslkf</p>
       </blockquote>
-      <h4>Code highlighting</h4>
+      <h4 id="code-highlighting">Code highlighting</h4>
       <p>GFM, or &quot;GitHub Flavored Markdown&quot; also supports syntax highlighting. To activate it, simply add the file extension of the language you want to use directly after the first &quot;fence&quot;: <code>``` js</code>
       </p>
-      <pre><code class="lang-js">assemble: {
+      <pre><code class="language-js">assemble: {
   <span class="comment">// Files to build into pages</span>
   pages: {
     src:  <span class="string">'templates/pages/*.hbs'</span>,

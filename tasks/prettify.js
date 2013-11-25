@@ -9,17 +9,15 @@
 'use strict';
 
 module.exports = function(grunt) {
-  var htmlprettify = require('js-beautify').html;
 
-  // Please see the grunt documentation for more information regarding task
-  // creation: https://github.com/gruntjs/grunt/blob/devel/docs/toc.md
-
+  var formatHTML = require('js-beautify').html;
   grunt.task.registerMultiTask('prettify', 'Prettify HTML.', function() {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       condense: true,
       padcomments: false,
+      preserveBOM: false,
       indent: 2,
       indent_char: " ",
       indent_inner_html: true,
@@ -33,7 +31,7 @@ module.exports = function(grunt) {
     // Alias indent_size
     options.indent_size = options.indent;
 
-    // Extend default options with options from specified jsbeautifyrc file
+    // Extend default options with options from specified .jsbeautifyrc file
     if (options.config) {
       options = grunt.util._.extend(grunt.file.readJSON(options.config), options);
     }
@@ -51,29 +49,32 @@ module.exports = function(grunt) {
       }).map(grunt.file.read).join(grunt.util.normalizelf(grunt.util.linefeed)); // Read source files.
 
       // Prettify HTML.
-      var prettify = prettifyHTML(srcFile, options);
+      var output = prettifyHTML(srcFile, options);
 
       // Reduce multiple newlines to a single newline
-      if(options.condense === true) {
-        prettify = condense(prettify);
-      }
+      output = (options.condense === true) ? condense(output) : output;
       // Add a single newline above code comments.
-      if(options.padcomments === true) {
-        prettify = padcomments(prettify);
-      }
+      output = (options.padcomments === true) ? padcomments(output) : output;
+      // Preserve byte-order marks. Set to "false" by default.
+      output = (options.preserveBOM === true) ? stripBOM(output) : output;
 
-      if (prettify.length < 1) {
-        grunt.log.warn('Destination not written because beautified HTML was empty.');
+      if (output.length < 1) {
+        grunt.log.warn('Destination not written because dest file was empty.');
       } else {
-
         // Write the destination file.
-        grunt.file.write(fp.dest, prettify);
-
+        grunt.file.write(fp.dest, output);
         // Print a success message.
-        grunt.log.ok('File "' + fp.dest + '" beautified.');
+        grunt.log.ok('File "' + fp.dest + '" prettified.');
       }
     });
   });
+
+  var stripBOM = function(content) {
+    if (content.charCodeAt(0) === 0xFEFF) {
+      content = content.slice(1);
+    }
+    return content;
+  };
 
   var condense = function(str) {
     return str.replace(/(\n|\r){2,}/g, '\n');
@@ -85,10 +86,10 @@ module.exports = function(grunt) {
 
   var prettifyHTML = function(source, options) {
     try {
-      return htmlprettify(source, options);
+      return formatHTML(source, options);
     } catch (e) {
       grunt.log.error(e);
-      grunt.fail.warn('HTML beautification failed.');
+      grunt.fail.warn('HTML prettification failed.');
     }
   };
 };
