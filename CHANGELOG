@@ -1,3 +1,8 @@
+v0.3.0:
+  date: "2013-11-25"
+  changes:
+    - Adds option to preserve byte-order marks in output.
+    - General task improvements
 v0.2.7:
   date: "2013-08-18"
   changes:

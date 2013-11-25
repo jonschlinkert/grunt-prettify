@@ -64,6 +64,12 @@ Default value: `true`
 
 Removes extra newlines and retains indenting.
 
+#### preserveBOM
+Type: `Boolean`
+Default value: `false`
+
+Preserve byte-order marks that might exist. Also see the [Grunt.js source](https://github.com/gruntjs/grunt/blob/master/lib/grunt/file.js#L217).
+
 #### padcomments
 Type: `Boolean|Number`
 Default value: `false`
@@ -218,6 +224,7 @@ See the [grunt][] docs for more information about task configuration.
 
 ## Release History
 
+ * 2013-11-25   v0.3.0   Adds option to preserve byte-order marks in output. General task improvements
  * 2013-08-18   v0.2.7   Options updated to use new config option from js-beautify.
  * 2013-04-21   v0.1.1   Create plugin, run tests. Add assemble task to generate test HTML from templates.
  * 2013-04-21   v0.1.0   First commit.
