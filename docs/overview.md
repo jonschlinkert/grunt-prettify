@@ -1,4 +1,3 @@
-# Overview
 In your project's Gruntfile, add a section named `prettify` to the data object passed into `grunt.initConfig()`.
 
 ```javascript

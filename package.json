@@ -29,14 +29,15 @@
   },
   "dependencies": {
     "js-beautify": "~1.4.2",
-    "iconv-lite": "~0.2.11"
+    "lodash": "~2.3.0",
+    "underscore.string": "~2.3.3"
   },
   "devDependencies": {
-    "grunt-contrib-clean": "~0.5.0",
+    "assemble": "~0.4.27",
     "grunt": "~0.4.2",
+    "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-jshint": "~0.7.2",
-    "grunt-readme": "~0.3.4",
-    "assemble": "~0.4.27"
+    "grunt-readme": "~0.3.4"
   },
   "keywords": [
     "beautifier",

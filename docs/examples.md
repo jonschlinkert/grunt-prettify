@@ -1,5 +1,3 @@
-# Usage Examples
-
 ## Default Options
 The default setup in this project's Gruntfile uses an external `.prettifyrc` file for controlling the task's options.
 
@@ -80,25 +78,3 @@ prettify: {
 ```
 
 See the [grunt][] docs for more information about task configuration.
-
-
-[grunt]: http://gruntjs.com/
-
-
-## Author
-
-**Jon Schlinkert**
-
-+ [twitter.com/jonschlinkert](http://twitter.com/jonschlinkert)
-+ [github.com/jonschlinkert](http://github.com/jonschlinkert)
-
-## Thanks!
-
-Also, this plugin is based on and uses [js-beautifier](http://jsbeautifier.org/).
-"Thank you" to authors and contributors of that project!
-
- * Written by Nochum Sossonko, <nsossonko@hotmail.com>
- * Based on code initially developed by: [Einar Lielmanis](elfz@laacz.lv)
- * Many [other contributors](https://github.com/einars/js-beautify/contributors)
- * [Visit the project](https://github.com/einars/js-beautify)
-

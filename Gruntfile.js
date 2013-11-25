@@ -41,8 +41,7 @@ module.exports = function(grunt) {
       options: {
         config: '.jsbeautifyrc',
         padcomments: true,
-        condense: true,
-        indent: 2
+        condense: true
       },
       one: {
         options: {
@@ -52,6 +51,9 @@ module.exports = function(grunt) {
         dest: 'test/actual/index.html'
       },
       all: {
+        options: {
+          indent: 2
+        },
         files: [
           {expand: true, cwd: 'test/actual/ugly/', ext: '.html', src: ['*.html'], dest: 'test/actual/pretty/'}
         ]
