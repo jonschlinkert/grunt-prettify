@@ -27,35 +27,59 @@ module.exports = function(grunt) {
       options: {
         flatten: true,
         assets: 'test/actual/assets',
-        layout: 'test/fixtures/layouts/default.hbs',
+        data: 'test/fixtures/data/*.{json,yml}',
         partials: 'test/fixtures/includes/*.hbs',
-        data: 'test/fixtures/data/*.{json,yml}'
+        layoutdir: 'test/fixtures/layouts',
+        layout: 'default.hbs'
       },
       pages: {
-        src: ['test/fixtures/pages/*.hbs'],
+        src: ['test/fixtures/pages/*.{hbs,md}'],
         dest: 'test/actual/ugly/'
       }
     },
 
     prettify: {
-      options: {
-        config: '.jsbeautifyrc',
-        padcomments: true,
-        condense: true
-      },
-      one: {
-        options: {
-          indent: 6
-        },
+      // Prettify a single file
+      single: {
         src: 'test/actual/ugly/index.html',
-        dest: 'test/actual/index.html'
+        dest: 'test/actual/single/index.html'
       },
-      all: {
+      // Use defaults
+      defaults: {
+        files: [
+          {expand: true, cwd: 'test/actual/ugly/', src: ['*.html'], dest: 'test/actual/defaults/', ext: '.html'}
+        ]
+      },
+      // Use .jsbeautifyrc
+      jsbeautifyrc: {
         options: {
-          indent: 2
+          config: '.jsbeautifyrc'
         },
         files: [
-          {expand: true, cwd: 'test/actual/ugly/', ext: '.html', src: ['*.html'], dest: 'test/actual/pretty/'}
+          {expand: true, cwd: 'test/actual/ugly/', src: ['*.html'], dest: 'test/actual/jsbeautifyrc/', ext: '.html'}
+        ]
+      },
+      // Indent by 6 spaces
+      custom_indentation: {
+        options: {
+          config: '.jsbeautifyrc'
+        },
+        src: 'test/actual/ugly/index.html',
+        dest: 'test/actual/single/index.html'
+      },
+      // Use condense option to reduce extra newlines
+      condense: {
+        files: [
+          {expand: true, cwd: 'test/actual/ugly/', src: ['*.html'], dest: 'test/actual/custom_indentation/', ext: '.html'}
+        ]
+      },
+      // Specify a number to padcomments
+      padcomments: {
+        options: {
+          padcomments: 3
+        },
+        files: [
+          {expand: true, cwd: 'test/actual/ugly/', src: ['*.html'], dest: 'test/actual/padcomments/', ext: '.html'}
         ]
       }
     },
@@ -64,7 +88,7 @@ module.exports = function(grunt) {
     // remove files from previous build.
     clean: {
       dest: {
-        pages: ['dist/*.html', 'index.html']
+        src: ['test/actual/**/*.html']
       }
     }
   });
