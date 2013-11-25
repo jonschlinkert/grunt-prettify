@@ -69,17 +69,11 @@ module.exports = function(grunt) {
 
   // Load npm plugins to provide necessary tasks.
   grunt.loadNpmTasks('assemble');
-  grunt.loadNpmTasks('assemble-internal');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
-
-  // Tests to be run.
-  grunt.registerTask('test', ['jshint']);
-
-  // Generate the README.
-  grunt.registerTask('docs', ['assemble-internal']);
+  grunt.loadNpmTasks('grunt-readme');
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['test', 'clean', 'assemble', 'prettify']);
+  grunt.registerTask('default', ['jshint', 'clean', 'assemble', 'prettify', 'readme']);
 
 };
