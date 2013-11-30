@@ -39,6 +39,9 @@ module.exports = function(grunt) {
     },
 
     prettify: {
+      options: {
+        ocd: true
+      },
       // Prettify a single file
       single: {
         src: 'test/actual/ugly/index.html',
