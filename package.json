@@ -1,7 +1,7 @@
 {
   "name": "grunt-prettify",
   "description": "HTML prettifier with options to format HTML according to your own preferences.",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "homepage": "https://github.com/jonschlinkert/grunt-prettify",
   "author": {
     "name": "jonschlinkert",
@@ -30,7 +30,8 @@
   "dependencies": {
     "js-beautify": "~1.4.2",
     "lodash": "~2.3.0",
-    "underscore.string": "~2.3.3"
+    "underscore.string": "~2.3.3",
+    "async": "~0.2.9"
   },
   "devDependencies": {
     "assemble": "~0.4.27",

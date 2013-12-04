@@ -11,6 +11,7 @@
 var format = require('js-beautify').html;
 var _str   = require('underscore.string');
 var _      = require('lodash');
+var async  = require('async');
 
 
 module.exports = function(grunt) {
@@ -32,8 +33,7 @@ module.exports = function(grunt) {
       brace_style: "expand",
       preserve_newline: false,
       max_preserve_newline: 0,
-      wrap_line_length: 0,
-      unformatted: ['code', 'pre', 'em', 'strong', 'span']
+      wrap_line_length: 0
     });
 
     options.indent_size = options.indent;
@@ -43,20 +43,23 @@ module.exports = function(grunt) {
       options = grunt.util._.extend(grunt.file.readJSON(options.config), options);
     }
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(fp) {
-      var srcFile = fp.src.filter(function(filepath) {
-        // Verify that files exist. Warn if a source file/pattern was invalid.
+    async.forEach(this.files, function(fp, cb) {
+
+      var files = grunt.file.expand({nonull: true}, fp.src);
+
+      // Concat specified files.
+      var src = files.map(function(filepath) {
+        // Warn if a source file/pattern was invalid.
         if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
+          grunt.log.error('Source file "' + filepath + '" not found.');
+          return '';
         }
-      }).map(grunt.file.read).join(grunt.util.normalizelf(grunt.util.linefeed)); // Read source files.
+        // Read file source.
+        return grunt.file.read(filepath);
+      }).join(options.separator);
 
       // Prettify HTML.
-      var output = prettifyHTML(srcFile, options);
+      var output = prettifyHTML(src, options);
 
       // Reduce multiple newlines to a single newline
       output = (options.condense === true) ? condense(output) : output;
@@ -85,6 +88,7 @@ module.exports = function(grunt) {
         // Print a success message.
         grunt.log.ok('File "' + fp.dest + '" prettified.');
       }
+      cb();
     });
   });
 
