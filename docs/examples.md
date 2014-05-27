@@ -5,7 +5,7 @@ The default setup in this project's Gruntfile uses an external `.prettifyrc` fil
 grunt.initConfig({
   prettify: {
     options: {
-      prettifyrc: '.prettifyrc'
+      config: '.prettifyrc'
     },
     files: {
       'pretty/index.html': ['ugly/index.html']
@@ -55,7 +55,7 @@ Example configurations for prettifying one file at a time, or entire directories
 ```js
 prettify: {
   options: {
-    prettifyrc: '.prettifyrc'
+    config: '.prettifyrc'
   },
   // Prettify a directory of files
   all: {
