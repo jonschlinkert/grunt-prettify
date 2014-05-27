@@ -40,7 +40,7 @@ module.exports = function(grunt) {
 
     // Extend default options with options from specified .jsbeautifyrc file
     if (options.config) {
-      options = grunt.util._.extend(grunt.file.readJSON(options.config), options);
+      options = grunt.util._.extend(options, grunt.file.readJSON(options.config));
     }
 
     async.forEach(this.files, function(fp, cb) {
