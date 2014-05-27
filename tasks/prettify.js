@@ -21,7 +21,7 @@ module.exports = function(grunt) {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       // Custom options
-      indent: 2, // alias for indent_size
+      indent_size: 2,
       condense: true,
       padcomments: false,
       preserveBOM: false,
@@ -36,11 +36,14 @@ module.exports = function(grunt) {
       wrap_line_length: 0
     });
 
-    options.indent_size = options.indent;
-
     // Extend default options with options from specified .jsbeautifyrc file
     if (options.config) {
       options = grunt.util._.extend(options, grunt.file.readJSON(options.config));
+    }
+
+    // If user has used alias for indent_size
+    if (!_.isUndefined(options.indent)) {
+      options.indent_size = options.indent;
     }
 
     async.forEach(this.files, function(fp, cb) {
