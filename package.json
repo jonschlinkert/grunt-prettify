@@ -1,7 +1,7 @@
 {
   "name": "grunt-prettify",
   "description": "HTML prettifier with options to format HTML according to your own preferences.",
-  "version": "0.3.5",
+  "version": "0.4.0",
   "homepage": "https://github.com/jonschlinkert/grunt-prettify",
   "author": {
     "name": "jonschlinkert",
@@ -28,33 +28,35 @@
     "test": "grunt test"
   },
   "dependencies": {
+    "async": "~0.9.0",
+    "globby": "^0.1.1",
     "js-beautify": "~1.5.4",
     "lodash": "~2.4.1",
-    "underscore.string": "~2.3.3",
-    "async": "~0.9.0"
+    "underscore.string": "~2.3.3"
   },
   "devDependencies": {
     "assemble": "~0.4.27",
     "grunt": "~0.4.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-jshint": "~0.7.2",
-    "grunt-readme": "~0.3.4"
+    "mocha": "*",
+    "verb": ">= 0.2.6",
+    "verb-tag-jscomments": ">= 0.2.0"
   },
   "keywords": [
     "beautifier",
-    "beautify HTML",
     "beautify",
-    "code indent",
-    "code indenter",
-    "format HTML",
-    "grunt plugin",
+    "code",
+    "format",
+    "formatter",
+    "formatting",
+    "grunt",
     "gruntplugin",
-    "html formatter",
-    "html formatting",
-    "html indent",
-    "html indenter",
+    "html",
+    "indent",
+    "indenter",
+    "plugin",
     "prettifier",
-    "prettify HTML",
     "prettify"
   ]
 }
