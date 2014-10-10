@@ -14,7 +14,7 @@
 var fs = require('fs');
 var path = require('path');
 var glob = require('globby');
-var format = require('js-beautify').html;
+var prettify = require('js-beautify').html;
 var _str = require('underscore.string');
 var _ = require('lodash');
 
@@ -51,44 +51,36 @@ module.exports = function (grunt) {
     }
 
     this.files.forEach(function (fp) {
-
       var files = glob.sync(fp.src);
-
-      // Concat specified files.
-      var str = files.map(read).join(opts.separator);
-
-      // Prettify HTML.
-      var output = prettify(str, opts);
+      var html = files.map(read).join(opts.separator);
+      var str = prettify(html, opts);
 
       // Reduce multiple newlines to a single newline
       if (opts.condense === true) {
-        output = condense(output);
+        str = condense(str);
       }
 
       // Use at your own risk. This option will slow down the build.
       // What does "ocd" mean? Just look at the function, then lookup
       // ocd on wikipedia.
       if (opts.ocd === true) {
-        output = ocd(output);
+        str = ocd(str);
       }
 
       // Add a single newline above code comments.
       if (opts.padcomments === true) {
-        output = padcomments(output, 1);
+        str = padcomments(str, 1);
       }
 
-      if (opts.padcomments !== false && _.isNumber(opts.padcomments)) {
-        output = padcomments(output, opts.padcomments);
+      if (_.isNumber(opts.padcomments)) {
+        str = padcomments(str, opts.padcomments);
       }
 
-      // Preserve byte-order marks. Set to "false" by default.
-      output = (opts.preserveBOM === true) ? stripBOM(output) : output;
-
-      if (output.length < 1) {
+      if (str.length < 1) {
         grunt.log.warn('Destination not written because dest file was empty.');
       } else {
         // Write the destination file.
-        grunt.file.write(fp.dest, output);
+        grunt.file.write(fp.dest, str);
         // Print a success message.
         grunt.log.ok('File "' + fp.dest + '" prettified.');
       }
@@ -96,26 +88,32 @@ module.exports = function (grunt) {
   });
 
   function read(fp) {
-    return fs.readFileSync(fp, 'utf8')
+    var str = fs.readFileSync(fp, 'utf8');
+    str = normalize(str);
+    return stripBOM(str);
   }
 
-  var stripBOM = function (content) {
-    if (content.charCodeAt(0) === 0xFEFF) {
-      content = content.slice(1);
+  function normalize(str) {
+    return str.replace(/\r/g, '');
+  }
+
+  function stripBOM(str) {
+    if (str.charCodeAt(0) === 0xFEFF) {
+      return str.slice(1);
     }
-    return content;
-  };
+    return str;
+  }
 
   // Normalize and condense all newlines
-  var condense = function (str) {
+  function condense(str) {
     return str.replace(/(\r\n|\n\r|\n|\r){2,}/g, '\n');
-  };
+  }
 
   // fix multiline, Bootstrap-style comments
-  var padcomments = function (str, num) {
+  function padcomments(str, num) {
     var nl = _str.repeat('\n', (num || 1));
     return str.replace(/(\s*)(<!--.+)\s*(===.+)?/g, nl + '$1$2$1$3');
-  };
+  }
 
   var ocd = function (str) {
     str = str
@@ -140,12 +138,4 @@ module.exports = function (grunt) {
     return str;
   };
 
-  var prettify = function (source, options) {
-    try {
-      return format(source, options);
-    } catch (e) {
-      grunt.log.error(e);
-      grunt.fail.warn('HTML prettification failed.');
-    }
-  };
 };
