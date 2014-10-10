@@ -1,25 +1,29 @@
-/*
- * grunt-prettify
- * https://github.com/jonschlinkert/grunt-prettify
+/*!
+ * grunt-prettify <https://github.com/jonschlinkert/grunt-prettify>
  *
- * Copyright (c) 2013 Jon Schlinkert
+ * Copyright (c) 2014 Jon Schlinkert
  * Licensed under the MIT license.
  */
+
 'use strict';
 
-// node_modules
+/**
+ * Module dependencies
+ */
+
+var fs = require('fs');
+var path = require('path');
+var glob = require('globby');
 var format = require('js-beautify').html;
-var _str   = require('underscore.string');
-var _      = require('lodash');
-var async  = require('async');
+var _str = require('underscore.string');
+var _ = require('lodash');
 
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-  grunt.task.registerMultiTask('prettify', 'Prettify HTML.', function() {
-
+  grunt.task.registerMultiTask('prettify', 'Prettify HTML.', function () {
     // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
+    var opts = this.options({
       // Custom options
       indent_size: 2,
       condense: true,
@@ -37,51 +41,48 @@ module.exports = function(grunt) {
     });
 
     // Extend default options with options from specified .jsbeautifyrc file
-    if (options.config) {
-      options = grunt.util._.extend(options, grunt.file.readJSON(options.config));
+    if (opts.config) {
+      opts = _.extend(opts, grunt.file.readJSON(opts.config));
     }
 
     // If user has used alias for indent_size
-    if (!_.isUndefined(options.indent)) {
-      options.indent_size = options.indent;
+    if (!_.isUndefined(opts.indent)) {
+      opts.indent_size = opts.indent;
     }
 
-    async.forEach(this.files, function(fp, cb) {
+    this.files.forEach(function (fp) {
 
-      var files = grunt.file.expand({nonull: true}, fp.src);
+      var files = glob.sync(fp.src);
 
       // Concat specified files.
-      var src = files.map(function(filepath) {
-        // Warn if a source file/pattern was invalid.
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.error('Source file "' + filepath + '" not found.');
-          return '';
-        }
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(options.separator);
+      var str = files.map(read).join(opts.separator);
 
       // Prettify HTML.
-      var output = prettifyHTML(src, options);
+      var output = prettify(str, opts);
 
       // Reduce multiple newlines to a single newline
-      output = (options.condense === true) ? condense(output) : output;
+      if (opts.condense === true) {
+        output = condense(output);
+      }
 
       // Use at your own risk. This option will slow down the build.
       // What does "ocd" mean? Just look at the function, then lookup
       // ocd on wikipedia.
-      output = (options.ocd === true) ? ocd(output) : output;
+      if (opts.ocd === true) {
+        output = ocd(output);
+      }
 
       // Add a single newline above code comments.
-      if(options.padcomments === true) {
+      if (opts.padcomments === true) {
         output = padcomments(output, 1);
       }
-      if(options.padcomments !== false && _.isNumber(options.padcomments)) {
-        output = padcomments(output, options.padcomments);
+
+      if (opts.padcomments !== false && _.isNumber(opts.padcomments)) {
+        output = padcomments(output, opts.padcomments);
       }
 
       // Preserve byte-order marks. Set to "false" by default.
-      output = (options.preserveBOM === true) ? stripBOM(output) : output;
+      output = (opts.preserveBOM === true) ? stripBOM(output) : output;
 
       if (output.length < 1) {
         grunt.log.warn('Destination not written because dest file was empty.');
@@ -91,11 +92,14 @@ module.exports = function(grunt) {
         // Print a success message.
         grunt.log.ok('File "' + fp.dest + '" prettified.');
       }
-      cb();
     });
   });
 
-  var stripBOM = function(content) {
+  function read(fp) {
+    return fs.readFileSync(fp, 'utf8')
+  }
+
+  var stripBOM = function (content) {
     if (content.charCodeAt(0) === 0xFEFF) {
       content = content.slice(1);
     }
@@ -103,40 +107,40 @@ module.exports = function(grunt) {
   };
 
   // Normalize and condense all newlines
-  var condense = function(str) {
+  var condense = function (str) {
     return str.replace(/(\r\n|\n\r|\n|\r){2,}/g, '\n');
   };
 
   // fix multiline, Bootstrap-style comments
-  var padcomments = function(str, num) {
+  var padcomments = function (str, num) {
     var nl = _str.repeat('\n', (num || 1));
     return str.replace(/(\s*)(<!--.+)\s*(===.+)?/g, nl + '$1$2$1$3');
   };
 
-  var ocd = function(str) {
+  var ocd = function (str) {
     str = str
-      // Remove any empty lines at the top of a file.
-      .replace(/^\s*/g, '')
-      // make <li><a></li> on one line, but only when li > a
-      .replace(/(<li>)(\s*)(<a .+)(\s*)(<\/li>)/g, '$1 $3 $5')
-      // make <a><span></a> on one line, but only when a > span
-      .replace(/(<a.+)(\s*)(<span.+)(\s*)(<\/a>)/g, '$1 $3 $5')
-      // Put labels and inputs on one line
-      .replace(/(\s*)(<label>)(\s*)(.+)(\s*)(.+)\s*(.+)\s*(<\/label>)/g, '$1$2$4$6$7$8')
-      // Fix newlines when <p> has child elements
-      // .replace(/(\s*)(<p.+)(\s*)(<.+)(\s*)(.+)(<\/p>)/g, '$1$2$3$4$5$6$1$7')
-      // Make <p>text</p> on one line.
-      .replace(/(<p.+)(\s*)(<\/p>)/gm, '$1$3')
-      // Adjust spacing for span > input
-      .replace(/(\s*)(<(?:span|strong|button).+)(\s*)(<.+)(\s*)(<\/(?:span|strong|button)>)/g, '$1$2$1  $4$1$6')
-      // Add a newline for tags nested inside <h1-6>
-      .replace(/(\s*)(<h[0-6](?:.+)?>)(.*)(<(?:small|span|strong|em)(?:.+)?)(\s*)(<\/h[0-6]>)/g, '$1$2$3$1  $4$1$6')
-      // Bring closing comments up to the same line as closing tag.
-      .replace(/\s*(<!--\s*\/.+)/g, '$1');
+    // Remove any empty lines at the top of a file.
+    .replace(/^\s*/g, '')
+    // make <li><a></li> on one line, but only when li > a
+    .replace(/(<li>)(\s*)(<a .+)(\s*)(<\/li>)/g, '$1 $3 $5')
+    // make <a><span></a> on one line, but only when a > span
+    .replace(/(<a.+)(\s*)(<span.+)(\s*)(<\/a>)/g, '$1 $3 $5')
+    // Put labels and inputs on one line
+    .replace(/(\s*)(<label>)(\s*)(.+)(\s*)(.+)\s*(.+)\s*(<\/label>)/g, '$1$2$4$6$7$8')
+    // Fix newlines when <p> has child elements
+    // .replace(/(\s*)(<p.+)(\s*)(<.+)(\s*)(.+)(<\/p>)/g, '$1$2$3$4$5$6$1$7')
+    // Make <p>text</p> on one line.
+    .replace(/(<p.+)(\s*)(<\/p>)/gm, '$1$3')
+    // Adjust spacing for span > input
+    .replace(/(\s*)(<(?:span|strong|button).+)(\s*)(<.+)(\s*)(<\/(?:span|strong|button)>)/g, '$1$2$1  $4$1$6')
+    // Add a newline for tags nested inside <h1-6>
+    .replace(/(\s*)(<h[0-6](?:.+)?>)(.*)(<(?:small|span|strong|em)(?:.+)?)(\s*)(<\/h[0-6]>)/g, '$1$2$3$1  $4$1$6')
+    // Bring closing comments up to the same line as closing tag.
+    .replace(/\s*(<!--\s*\/.+)/g, '$1');
     return str;
   };
 
-  var prettifyHTML = function(source, options) {
+  var prettify = function (source, options) {
     try {
       return format(source, options);
     } catch (e) {
