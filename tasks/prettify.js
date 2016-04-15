@@ -37,7 +37,8 @@ module.exports = function (grunt) {
       brace_style: "expand",
       preserve_newline: false,
       max_preserve_newline: 0,
-      wrap_line_length: 0
+      wrap_line_length: 0,
+      log_change: true
     });
 
     // Extend default options with options from specified .jsbeautifyrc file
@@ -81,8 +82,11 @@ module.exports = function (grunt) {
       } else {
         // Write the destination file.
         grunt.file.write(fp.dest, str);
-        // Print a success message.
-        grunt.log.ok('File "' + fp.dest + '" prettified.');
+        
+        if (opts.log_change) {
+          // Print a success message.
+          grunt.log.ok('File "' + fp.dest + '" prettified.');
+        }
       }
     });
   });
