@@ -12,7 +12,7 @@
  */
 
 var fs = require('fs');
-var path = require('path');
+// var path = require('path');
 var glob = require('globby');
 var prettify = require('js-beautify').html;
 var _str = require('underscore.string');
@@ -20,6 +20,57 @@ var _ = require('lodash');
 
 
 module.exports = function (grunt) {
+  
+  function normalize(str) {
+    return str.replace(/\r/g, '');
+  }
+
+  function stripBOM(str) {
+    if (str.charCodeAt(0) === 0xFEFF) {
+      return str.slice(1);
+    }
+    return str;
+  }
+  
+  function read(fp) {
+    var str = fs.readFileSync(fp, 'utf8');
+    str = normalize(str);
+    return stripBOM(str);
+  }
+
+  // Normalize and condense all newlines
+  function condense(str) {
+    return str.replace(/(\r\n|\n\r|\n|\r){2,}/g, '\n');
+  }
+
+  // fix multiline, Bootstrap-style comments
+  function padcomments(str, num) {
+    var nl = _str.repeat('\n', (num || 1));
+    return str.replace(/(\s*)(<!--.+)\s*(===.+)?/g, nl + '$1$2$1$3');
+  }
+
+  var ocd = function (str) {
+    str = str
+    // Remove any empty lines at the top of a file.
+    .replace(/^\s*/g, '')
+    // make <li><a></li> on one line, but only when li > a
+    .replace(/(<li>)(\s*)(<a .+)(\s*)(<\/li>)/g, '$1 $3 $5')
+    // make <a><span></a> on one line, but only when a > span
+    .replace(/(<a.+)(\s*)(<span.+)(\s*)(<\/a>)/g, '$1 $3 $5')
+    // Put labels and inputs on one line
+    .replace(/(\s*)(<label>)(\s*)(.+)(\s*)(.+)\s*(.+)\s*(<\/label>)/g, '$1$2$4$6$7$8')
+    // Fix newlines when <p> has child elements
+    // .replace(/(\s*)(<p.+)(\s*)(<.+)(\s*)(.+)(<\/p>)/g, '$1$2$3$4$5$6$1$7')
+    // Make <p>text</p> on one line.
+    .replace(/(<p.+)(\s*)(<\/p>)/gm, '$1$3')
+    // Adjust spacing for span > input
+    .replace(/(\s*)(<(?:span|strong|button).+)(\s*)(<.+)(\s*)(<\/(?:span|strong|button)>)/g, '$1$2$1  $4$1$6')
+    // Add a newline for tags nested inside <h1-6>
+    .replace(/(\s*)(<h[0-6](?:.+)?>)(.*)(<(?:small|span|strong|em)(?:.+)?)(\s*)(<\/h[0-6]>)/g, '$1$2$3$1  $4$1$6')
+    // Bring closing comments up to the same line as closing tag.
+    .replace(/\s*(<!--\s*\/.+)/g, '$1');
+    return str;
+  };
 
   grunt.task.registerMultiTask('prettify', 'Prettify HTML.', function () {
     // Merge task-specific and/or target-specific options with these defaults.
@@ -37,7 +88,8 @@ module.exports = function (grunt) {
       brace_style: "expand",
       preserve_newline: false,
       max_preserve_newline: 0,
-      wrap_line_length: 0
+      wrap_line_length: 0,
+      log_change: true
     });
 
     // Extend default options with options from specified .jsbeautifyrc file
@@ -81,61 +133,12 @@ module.exports = function (grunt) {
       } else {
         // Write the destination file.
         grunt.file.write(fp.dest, str);
-        // Print a success message.
-        grunt.log.ok('File "' + fp.dest + '" prettified.');
+        
+        if (opts.log_change) {
+          // Print a success message.
+          grunt.log.ok('File "' + fp.dest + '" prettified.');
+        }
       }
     });
   });
-
-  function read(fp) {
-    var str = fs.readFileSync(fp, 'utf8');
-    str = normalize(str);
-    return stripBOM(str);
-  }
-
-  function normalize(str) {
-    return str.replace(/\r/g, '');
-  }
-
-  function stripBOM(str) {
-    if (str.charCodeAt(0) === 0xFEFF) {
-      return str.slice(1);
-    }
-    return str;
-  }
-
-  // Normalize and condense all newlines
-  function condense(str) {
-    return str.replace(/(\r\n|\n\r|\n|\r){2,}/g, '\n');
-  }
-
-  // fix multiline, Bootstrap-style comments
-  function padcomments(str, num) {
-    var nl = _str.repeat('\n', (num || 1));
-    return str.replace(/(\s*)(<!--.+)\s*(===.+)?/g, nl + '$1$2$1$3');
-  }
-
-  var ocd = function (str) {
-    str = str
-    // Remove any empty lines at the top of a file.
-    .replace(/^\s*/g, '')
-    // make <li><a></li> on one line, but only when li > a
-    .replace(/(<li>)(\s*)(<a .+)(\s*)(<\/li>)/g, '$1 $3 $5')
-    // make <a><span></a> on one line, but only when a > span
-    .replace(/(<a.+)(\s*)(<span.+)(\s*)(<\/a>)/g, '$1 $3 $5')
-    // Put labels and inputs on one line
-    .replace(/(\s*)(<label>)(\s*)(.+)(\s*)(.+)\s*(.+)\s*(<\/label>)/g, '$1$2$4$6$7$8')
-    // Fix newlines when <p> has child elements
-    // .replace(/(\s*)(<p.+)(\s*)(<.+)(\s*)(.+)(<\/p>)/g, '$1$2$3$4$5$6$1$7')
-    // Make <p>text</p> on one line.
-    .replace(/(<p.+)(\s*)(<\/p>)/gm, '$1$3')
-    // Adjust spacing for span > input
-    .replace(/(\s*)(<(?:span|strong|button).+)(\s*)(<.+)(\s*)(<\/(?:span|strong|button)>)/g, '$1$2$1  $4$1$6')
-    // Add a newline for tags nested inside <h1-6>
-    .replace(/(\s*)(<h[0-6](?:.+)?>)(.*)(<(?:small|span|strong|em)(?:.+)?)(\s*)(<\/h[0-6]>)/g, '$1$2$3$1  $4$1$6')
-    // Bring closing comments up to the same line as closing tag.
-    .replace(/\s*(<!--\s*\/.+)/g, '$1');
-    return str;
-  };
-
 };
