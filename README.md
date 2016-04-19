@@ -1,4 +1,4 @@
-# grunt-prettify [![NPM version](https://badge.fury.io/js/grunt-prettify.svg)](http://badge.fury.io/js/grunt-prettify)[![Build Status](https://api.travis-ci.org/jamie-robertson/grunt-prettify.svg?branch=master)](hhttps://travis-ci.org/jamie-robertson/grunt-prettify)
+# grunt-prettify [![NPM version](https://badge.fury.io/js/grunt-prettify.svg)] (http://badge.fury.io/js/grunt-prettify)[![Build Status](https://api.travis-ci.org/jamie-robertson/grunt-prettify.svg?branch=master)](hhttps://travis-ci.org/jamie-robertson/grunt-prettify)
 
 
 > HTML prettifier with options to format HTML according to your own preferences.
