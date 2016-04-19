@@ -21,12 +21,6 @@ var _ = require('lodash');
 
 module.exports = function (grunt) {
   
-    function read(fp) {
-    var str = fs.readFileSync(fp, 'utf8');
-    str = normalize(str);
-    return stripBOM(str);
-  }
-
   function normalize(str) {
     return str.replace(/\r/g, '');
   }
@@ -36,6 +30,12 @@ module.exports = function (grunt) {
       return str.slice(1);
     }
     return str;
+  }
+  
+  function read(fp) {
+    var str = fs.readFileSync(fp, 'utf8');
+    str = normalize(str);
+    return stripBOM(str);
   }
 
   // Normalize and condense all newlines
