@@ -4,5 +4,3 @@ node_js:
 before_script:
   - npm install -g grunt-cli
   - npm install grunt
-  - npm install assemble
-  - npm install grunt-readme
