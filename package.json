@@ -28,17 +28,18 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "async": "~0.9.0",
-    "globby": "^0.1.1",
-    "js-beautify": "~1.5.4",
-    "lodash": "~2.4.1",
-    "underscore.string": "~2.3.3"
+    "async": "^3.2.4",
+    "globby": "^11.1.0",
+    "js-beautify": "^1.14.0",
+    "lodash": "^4.17.21",
+    "underscore.string": "^3.3.6"
   },
   "devDependencies": {
     "assemble": "~0.4.27",
     "grunt": "~0.4.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-jshint": "~0.7.2",
+    "grunt-readme": "^0.4.5",
     "mocha": "*",
     "verb": ">= 0.2.6"
   },

@@ -12,7 +12,6 @@
  */
 
 var fs = require('fs');
-var path = require('path');
 var glob = require('globby');
 var prettify = require('js-beautify').html;
 var _str = require('underscore.string');
